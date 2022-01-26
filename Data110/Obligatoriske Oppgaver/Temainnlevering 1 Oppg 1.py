@@ -3,7 +3,6 @@ fornavn = "Jakob"
 mellomnavn = "Emma"
 etternavn = "Andreassen"
 
-test
 # Om mellomnavn er tomt så blir denne printet
 if mellomnavn == "":
     print(
