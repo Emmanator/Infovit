@@ -1,6 +1,6 @@
 # Kan skrive navn her
 fornavn = "Jakob"
-mellomnavn = ""
+mellomnavn = "Emma"
 etternavn = "Andreassen"
 
 # Om mellomnavn er tomt så blir denne printet
@@ -17,3 +17,11 @@ else:
         mellomnavn,
         etternavn,
         sep='\n')
+
+
+# Hvorfor må vi gjøre den samme oppgaven 2 ganger? :v
+Fornavn = "Jakob"
+Etternavn = "Andreassen"
+
+# Jeg har ikke mellomnavn så fjernet den i dette eksemplet av å printe for/etternavn
+print(Fornavn, Etternavn, sep='\n')
