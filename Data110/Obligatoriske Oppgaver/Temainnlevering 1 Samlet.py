@@ -1,4 +1,4 @@
-# Oppgave 1
+# Oppgave 1.1
 # Kan skrive navn her
 fornavn = "Jakob"
 mellomnavn = ""
@@ -19,10 +19,18 @@ else:
         etternavn,
         sep='\n')
 
-# Oppgave 1 V2
+# Oppgave 1.2
 # Hvorfor må vi gjøre den samme oppgaven 2 ganger? :v
 # Jeg har ikke mellomnavn så fjernet den variabelen i dette eksemplet av å printe for/etternavn
 print(fornavn, etternavn, sep='\n')
+
+# Oppgave 1.3
+# Benytter """""" igjen
+print("""Jakob
+Andreassen""")
+
+# Oppgave 1.4
+print("Jakob", "Andreassen", sep='\n')
 
 # Oppgave 2
 # Bruker """""" for multiline string print
