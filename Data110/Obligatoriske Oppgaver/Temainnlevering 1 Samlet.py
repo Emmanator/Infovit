@@ -25,7 +25,7 @@ else:
 print(fornavn, etternavn, sep='\n')
 
 # Oppgave 1.3
-# Benytter """""" igjen
+# Benytter """"""
 print("""Jakob
 Andreassen""")
 
