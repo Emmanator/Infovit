@@ -1,4 +1,4 @@
-# Oppgave 1 Eksempel 1
+# Oppgave 1 Eksempel 1:
 # Kan skrive navn her
 # Vurderte å brukebruke "input()" funksjon for dette, men Siden dere ønsker alt samlet i en fil
 # så har jeg skrevet variabler for fornavn, mellomnavn og etternavn på forhånd
@@ -17,21 +17,21 @@ if mellomnavn == "":
 else:
     print(fornavn, mellomnavn, etternavn, sep='\n')
 
-# Oppgave 1 Eksempel 2
+# Oppgave 1 Eksempel 2:
 # Hvorfor må vi gjøre den samme oppgaven flere ganger? :v
 # Jeg har ikke mellomnavn så fjernet den variabelen i dette eksemplet av å printe for/etternavn
 print(fornavn, etternavn, sep='\n')
 
-# Oppgave 1 Eksempel 3
+# Oppgave 1 Eksempel 3:
 # Benytter """""" for multiline string print
 print("""Jakob
 Andreassen""")
 
-# Oppgave 1 Eksempel 4
+# Oppgave 1 Eksempel 4:
 # Enkel metode for å printe flere strings samtidig.
 print("Jakob", "Andreassen", sep='\n')
 
-# Oppgave 2
+# Oppgave 2:
 # Bruker """""" for multiline string print
 print("""
     *       *      *  *   ***   ****
@@ -41,11 +41,11 @@ print("""
  ***    *       *  *  *   ***   * **
     """)
 
-# Oppgave 3
+# Oppgave 3a:
 # Kroner til Euro/Dollar kurs 28.01.2022 (finn.no valutakalkulator)
+kroner = 250
 euro_kurs = 0.099
 dollar_kurs = 0.111
-kroner = 250
 
 # Definerer konverterte variabler
 nok_til_euro = kroner * euro_kurs
@@ -54,4 +54,5 @@ nok_til_dollar = kroner * dollar_kurs
 # Print hva X kroner er i euro og dollar etter kurs variabel
 # Bruker print(f'{tekst:.2f}') for å få med 2 desimaler siden det er det som står i oppgaveteksten
 print(f'{kroner} kroner tilsvarer {nok_til_euro:.2f} Euro og {nok_til_dollar:.2f} Dollar.')
+# Oppgave 3b:
 print(f'{kroner} NOK tilsvarer {nok_til_euro:.2f}\N{euro sign} og {nok_til_dollar:.2f}\N{dollar sign}.')
