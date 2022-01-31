@@ -9,15 +9,15 @@ print(f'Arealet til en sirkel med radius {r} er {a:.3f}.')
 
 # Oppgave 2
 # Benytter len() for å få en variabel som leser hvor mange bokstaver det er i sentence
-sentence = str(input('Enter a sentence: '))
+sentence = str(input('Skriv en setning: '))
 input_lengde = len(sentence)
-guess = int(input('Guess the number of characters in previous input: '))
+guess = int(input('Gjett antall bokstaver '))
 
 # Benytter if else statement til å se om du gjetter riktig.
 if guess == input_lengde:
-    print("That's correct!")
+    print("Det er korrekt!")
 else:
-    print("That's false!")
+    print("Det er feil!")
 
 # Oppgave 3
 import random
