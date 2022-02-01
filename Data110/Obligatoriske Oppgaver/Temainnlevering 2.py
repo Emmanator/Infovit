@@ -20,10 +20,9 @@ else:
     print("Det er feil!")
 
 # Oppgave 3
-import random
-# tar input som en integer, random tall fra 1 til 100
-tall = int(input('Gi meg et tall: '))
-rand = random.randint(1 , 100)
+import random  # Liker å ha imports på toppen av scriptet, men har den her for oppgavens skyld.
+tall = int(input('Gi meg et tall: '))  # tar bare integer inputs
+rand = random.randint(1, 100)  # random tall fra 1 til 100
 
 # Setter verdien produsert av random og legger den bak input tallet
 kombinert = int(str(tall) + str(rand))
