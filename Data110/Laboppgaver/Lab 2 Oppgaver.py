@@ -56,15 +56,15 @@ while True:
     # Checks if the final value come out true or false
     user_win = (user == (machine % 3) + 1)
     tied = user == machine
-    machine_win = (machine == (user % 3) +1)
+    machine_win = (machine == (user % 3) + 1)
 
     # Prints the results with either true or false
     print(f'Machine chose {machine}')
-    if machine_win == True:
+    if machine_win:
         print("Machine wins!")
-    if tied == True:
+    if tied:
         print("Tie!")
-    if user_win == True:
+    if user_win:
         print("You win!")
     play_again = input("Play again? (y/n): ")
     if play_again.lower() != "y":
