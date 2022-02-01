@@ -49,20 +49,20 @@
 
 # Oppgave 6
 import random
-paper = 1
-scissor = 2
-rock = 3
-machine = random.randint(1, 3)
-# Takes user input
-user = int(input('Choose 1=paper, 2=scissor, 3=rock: '))
-print(f'Machine chose {machine}')
+while True:
+    machine = random.randint(1, 3)
+    user = int(input('Choose 1=paper, 2=scissor, 3=rock: '))
 
-# Checks if the final value come out true or false
-user_win = (user == (machine % 3) + 1)
-tied = user == machine
-machine_win = (machine == (user % 3) +1)
+    # Checks if the final value come out true or false
+    user_win = (user == (machine % 3) + 1)
+    tied = user == machine
+    machine_win = (machine == (user % 3) +1)
 
-# Prints the results with either true or false
-print(user_win)
-print(tied)
-print(machine_win)
+    # Prints the results with either true or false
+    print(f'Machine chose {machine}')
+    print(user_win)
+    print(tied)
+    print(machine_win)
+    play_again = input("Play again? (y/n): ")
+    if play_again.lower() != "y":
+        break
