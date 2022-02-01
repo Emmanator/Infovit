@@ -45,3 +45,4 @@ print(f'Permutasjoner: '
       f'{s2}{s1}{s3},'
       f'{s1}{s3}{s2},'
       f'{s1}{s2}{s3}.')
+ttest
