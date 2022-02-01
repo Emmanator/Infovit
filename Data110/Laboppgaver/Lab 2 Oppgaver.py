@@ -31,3 +31,4 @@ tre_sifret_tall = int(input('skriv et tresifret tall: '))
 s1 = ((tre_sifret_tall % 100) % 10)
 
 print(s1)
+cum
