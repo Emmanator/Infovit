@@ -60,9 +60,12 @@ while True:
 
     # Prints the results with either true or false
     print(f'Machine chose {machine}')
-    print(user_win)
-    print(tied)
-    print(machine_win)
+    if machine_win == True:
+        print("Machine wins!")
+    if tied == True:
+        print("Tie!")
+    if user_win == True:
+        print("You win!")
     play_again = input("Play again? (y/n): ")
     if play_again.lower() != "y":
         break
