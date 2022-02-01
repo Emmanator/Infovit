@@ -1,11 +1,13 @@
+import math
+import random
+import sys
+
 # Oppgave 2
 n = (int(input('Fra:')))
 m = (int(input('Til:')))
 
 # Oppgave 3
-import random
-
-tegn = '?' * (random.randint(10,60))
+tegn = '?' * (random.randint(10, 60))
 print(tegn)
 lengde = len(tegn)
 svar = int(input("Guess the amount of ?: "))
@@ -17,8 +19,6 @@ else:
 print(f'{lengde} is the correct answer.')
 
 # Oppgave 4
-import math
-
 n = int(input('Tall 1: '))
 m = int(input('Tall 2: '))
 nm = int(str(n) + str(m))
@@ -27,7 +27,6 @@ print(f'{nm} og {mn}')
 print(f'Kvadraroten av {nm} * {mn} er {math.sqrt(mn * nm):.2f}')
 
 # Oppgave 5
-import sys
 # int(input)) aksepterer bare integers så trenger ikke å skape error melding enda
 tst = int(input('Skriv et tresifret tall:'))
 
@@ -68,4 +67,3 @@ while True:
     play_again = input("Play again? (y/n): ")
     if play_again.lower() != "y":
         break
-
