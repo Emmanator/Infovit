@@ -27,8 +27,21 @@
 # print(f'Kvadraroten av {nm} * {mn} er {math.sqrt(mn * nm):.2f}')
 
 # Oppgave 5
-tre_sifret_tall = int(input('skriv et tresifret tall: '))
-s1 = ((tre_sifret_tall % 100) % 10)
+import sys
+# tst = int(input('Skriv et tresifret tall: '))
+tst = int(input('Skriv et tresifret tall:'))
 
-print(s1)
-cum
+if len(str(tst)) != 3:
+    print("Error! må være 3 karakterer")
+    sys.exit()
+
+s1 = ((tst % 100) % 10)
+s2 = ((tst // 10) % 10)
+s3 = (tst // 100)
+print(f'Permutasjoner: '
+      f'{s3}{s2}{s1},'
+      f'{s3}{s1}{s2},'
+      f'{s2}{s3}{s1},'
+      f'{s2}{s1}{s3},'
+      f'{s1}{s3}{s2},'
+      f'{s1}{s2}{s3}.')
