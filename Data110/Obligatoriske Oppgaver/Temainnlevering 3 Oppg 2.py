@@ -18,9 +18,6 @@ ordbkrav = ordfører_bkrav - bodd
 print(bystyre, ordfører, bybkrav, ordbkrav)
 if alder >= 30 and bodd >= 9:
     print('Du kan bli ordfører eller sitte i bystyret.')
-elif alder >= 26 and bodd >= 5 > 9:
-    print('Du kan sitte i bystyret.')
-    print(f'Prøv igjen om {ordbkrav} år for å bli ordfører.')
 elif alder >= 25 and bodd >= 9:
     print('Du kan sitte i bystyret.')
     print(f'Prøv igjen om {max(ordfører, ordbkrav)} år for å bli ordfører.')
