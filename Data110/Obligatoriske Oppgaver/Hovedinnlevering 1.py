@@ -2,7 +2,7 @@
 import math
 
 
-def pi(d=2):
+def pi(d=2):  # uten noe verdi går funksjonen automatisk til 2
     if d > 15:
         return 'too many decimals'
     else:
@@ -15,12 +15,9 @@ def pi(d=2):
 # CtF = (celsius * 9/5) + 32
 # FtC = (fahrenheit - 32) * 5/9
 # \N{degree celsius} \N{degree fahrenheit}
-# Gjør at degrees aksepterer bare floats
 # unit: str = 'C' gjør at default value er C så funksjonen fungerer om man bare gir ett tall.
-def tempkonv(degrees: float, unit: str = 'C') -> float:
-    if unit == 'C':
-        return (degrees * 9 / 5) + 32
-    elif unit == 'F':
+def tempkonv(degrees: float, unit: str = 'C') -> float:  # degrees aksepterer bare floats
+    if unit == 'F':
         return (degrees - 32) * 5 / 9
     else:
         return (degrees * 9 / 5) + 32  # else: skjer bare om funksjonen får bare ett tall og ikke C eller F
@@ -30,6 +27,7 @@ def tempkonv(degrees: float, unit: str = 'C') -> float:
 history = []  # er for siste endringer valget i velg()
 saldo = 500  # baseline saldo
 rentesats = 0.01  # baseline rente
+
 
 # innskudd() tar mengden og legger det til history som en string, og gir saldo en new verdi
 def innskudd(d):
@@ -43,12 +41,13 @@ def innskudd(d):
         print("gratulerer, du får bonusrente")
         rentesats += 0.01
 
-# utakk() er lik innskuud bare omvendt
+
+# utakk() er lik innskud bare omvendt
 def uttak(w):
     global saldo
     global rentesats
     global history
-    if w > saldo:
+    if w > saldo:  # if statement som skjekker om saldo går under 1000000
         print('overtrekk')
         return
     old_w = saldo
@@ -58,11 +57,13 @@ def uttak(w):
         print("du har nå ordinær rente")
         rentesats -= 0.01
 
+
 # beregner bare rente med nåværende saldo, endrer ikke variabelen
 def beregnRente():
     global saldo
     global rentesats
     return saldo * rentesats
+
 
 # bruker innskudd funksjonen sammen med beregnrente funksjonen for saldo * rente
 def renteoppgjøret():
@@ -94,6 +95,3 @@ def velg():
                 print(i)
         case _:
             print('Velg 1-5.')
-
-while True:
-    velg()
