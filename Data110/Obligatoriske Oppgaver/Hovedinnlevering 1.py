@@ -12,8 +12,6 @@ def pi(d=2):
 # Oppgave 2
 # Fra celsius til fahrenheit °F = (°C × 9/5) + 32
 # Fra fahrenheit til celsius °C = (°F − 32) × 5/9
-# celsius = 15.56
-# fahrenheit = 60
 # CtF = (celsius * 9/5) + 32
 # FtC = (fahrenheit - 32) * 5/9
 # \N{degree celsius} \N{degree fahrenheit}
@@ -29,11 +27,11 @@ def tempkonv(degrees: float, unit: str = 'C') -> float:
 
 
 # Oppgave 3
-history = []
-saldo = 500
-rentesats = 0.01
+history = []  # er for siste endringer valget i velg()
+saldo = 500  # baseline saldo
+rentesats = 0.01  # baseline rente
 
-
+# innskudd() tar mengden og legger det til history som en string, og gir saldo en new verdi
 def innskudd(d):
     global saldo
     global rentesats
@@ -41,11 +39,11 @@ def innskudd(d):
     old_d = saldo
     saldo += d
     history.append(f'+{d}')
-    if old_d <= 1000000 < saldo:
+    if old_d <= 1000000 < saldo:  # om gammel saldo var under 1000000 gir den pluss en rente
         print("gratulerer, du får bonusrente")
         rentesats += 0.01
 
-
+# utakk() er lik innskuud bare omvendt
 def uttak(w):
     global saldo
     global rentesats
@@ -56,17 +54,17 @@ def uttak(w):
     old_w = saldo
     saldo -= w
     history.append(f'-{w}')
-    if old_w >= 1000000 > saldo:
+    if old_w >= 1000000 > saldo:  # om gammel saldo var over 1000000 trekker den en rente
         print("du har nå ordinær rente")
         rentesats -= 0.01
 
-
+# beregner bare rente med nåværende saldo, endrer ikke variabelen
 def beregnRente():
     global saldo
     global rentesats
     return saldo * rentesats
 
-
+# bruker innskudd funksjonen sammen med beregnrente funksjonen for saldo * rente
 def renteoppgjøret():
     innskudd(beregnRente())
 
@@ -95,7 +93,7 @@ def velg():
             for i in history[-3:]:
                 print(i)
         case _:
-            print('Denne funksjonen aksepterer bare 1-4')
+            print('Velg 1-5.')
 
 while True:
     velg()
