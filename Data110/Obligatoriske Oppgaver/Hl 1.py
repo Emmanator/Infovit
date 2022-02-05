@@ -79,7 +79,7 @@ def velg():
 5 - siste endringer
 --------------------""")
     choice = input('Velg handling: ')
-    match choice:
+    match choice:  # bruker match case istedefor if else
         case '1':
             print('Saldo: ', saldo)
         case '2':
