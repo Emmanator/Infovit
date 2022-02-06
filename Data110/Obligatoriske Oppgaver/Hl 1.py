@@ -47,7 +47,7 @@ def uttak(w):
     global saldo
     global rentesats
     global history
-    if w > saldo:  # if statement som skjekker om saldo går under 1000000
+    if w > saldo:  # ser om uttaket er høyere enn saldo
         print('overtrekk')
         return
     old_w = saldo
