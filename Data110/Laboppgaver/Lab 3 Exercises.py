@@ -11,12 +11,13 @@ while True:
         break
 
 pay = hours * rate
+
 if hours > 40:
     overtimerate = 0.5 * rate
     overtime = (hours - 40) * overtimerate
-    print(pay + overtime)
-else:
-    print(pay)
+    pay += overtime
+
+print(pay)
 
 # Exercise 3
 
@@ -44,4 +45,4 @@ elif score >= 0.7:
 elif score >= 0.6:
     print('D')
 else:
-    print('F')
+    print('F you fail lol')
