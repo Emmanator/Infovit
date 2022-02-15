@@ -1,11 +1,9 @@
 # Oppgave 1
 # 1. a) Når x = 9 og y = 66 returnerer x != 7 and y <= 50 False
 #       og (x > 7 or 50 < y) and (x > y or y < 100) returnerer True
-# x = 9
-# y = 66
-# print(x != 7 and y <= 50)
-# print((x>7 or 50<y) and (x>y or y<100))
-# 2. b) (x != 7 and y > 51) vet ikke denne virker svært rar.
+# 2. b) not(not((x != 7 and y <= 50))
+#       not(x == 7 or y > 50)
+
 
 # Oppgave 2
 alder = int(input('Oppgi alder: '))
