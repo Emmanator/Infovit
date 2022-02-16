@@ -20,7 +20,7 @@ def tempkonv(degrees: float, unit: str = 'C') -> float:  # degrees aksepterer ba
     if unit == 'F':
         return (degrees - 32) * 5 / 9
     else:
-        return (degrees * 9 / 5) + 32  # else: skjer bare om funksjonen får bare ett tall og ikke C eller F
+        return (degrees * 9 / 5) + 32  # om brukeren skriver F kommer F -> C konversjon ellers er det C -> F
 
 
 # Oppgave 3
@@ -53,7 +53,7 @@ def uttak(w):
     old_w = saldo
     saldo -= w
     history.append(f'-{w}')
-    if old_w >= 1000000 > saldo:  # om gammel saldo var over 1000000 trekker den en rente
+    if old_w >= 1000000 > saldo:  # om gammel saldo var over 1000000 trekker den bonusrenten
         print("du har nå ordinær rente")
         rentesats -= 0.01
 
@@ -79,7 +79,7 @@ def velg():
 5 - siste endringer
 --------------------""")
     choice = input('Velg handling: ')
-    match choice:  # bruker match case istedefor if else
+    match choice:  # bruker match case istedefor if/elif/else
         case '1':
             print('Saldo: ', saldo)
         case '2':
