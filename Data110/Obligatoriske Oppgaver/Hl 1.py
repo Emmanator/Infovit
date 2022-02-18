@@ -24,7 +24,7 @@ def tempkonv(degrees: float, unit: str = 'C') -> float:  # degrees aksepterer ba
 
 
 # Oppgave 3
-history = []  # er for siste endringer valget i velg()
+history = []  # er for siste endring historie i velg()
 saldo = 500  # baseline saldo
 rentesats = 0.01  # baseline rente
 
@@ -79,7 +79,7 @@ def velg():
 5 - siste endringer
 --------------------""")
     choice = input('Velg handling: ')
-    match choice:  # bruker match case istedefor if/elif/else
+    match choice:  # bruker match case istedefor if/elif/else (Krever Python 3.10)
         case '1':
             print('Saldo: ', saldo)
         case '2':
