@@ -1,3 +1,52 @@
+# Exercise 1, 2
+while True:
+    try:
+        hours = int(input('Enter hours: '))
+        rate = float(input('Enter rate: '))
+    except ValueError:  # Om det blir error spør den om informasjonen igjen.
+        print('Må skrive tall')
+        continue
+    else:
+        # Ayy takk for at du skrev et nummer lmao
+        break
+
+pay = hours * rate
+
+if hours > 40:
+    overtimerate = 0.5 * rate
+    overtime = (hours - 40) * overtimerate
+    pay += overtime
+
+print(pay)
+
+# Exercise 3
+
+# Read score, if score is above 1 or not a numerical input prompt the user to try again
+while True:
+    try:
+        score = float(input('Please insert score: '))
+    except ValueError:
+        print('please insert number')
+        continue
+    if score > 1.00:
+        print('bad score')
+        continue
+    else:
+        break
+
+if score == 1:
+    print('Perfect score!')
+elif score >= 0.9:
+    print('A')
+elif score >= 0.8:
+    print('B')
+elif score >= 0.7:
+    print('C')
+elif score >= 0.6:
+    print('D')
+else:
+    print('F you fail lol')
+
 # Oppgave 1
 import sys
 
@@ -17,12 +66,11 @@ navn = input('Navn: ')
 alder = int(input('Alder: '))
 kjønn = input('Kjønn (M/I/K): ')
 barn = int(input('Antall barn: '))
-vandel = int(input('Vandel, på skala fra 1(dårlig) til 9(plettfri): ' ))
+vandel = int(input('Vandel, på skala fra 1(dårlig) til 9(plettfri): '))
 rulleblad = input('Rulleblad (straffet/tiltalt/mistenkt/rent): ')
 senioritet = int(input('Ansiennitet (år): '))
 nøytrale_navn = ['Kristen', 'Kim', 'Janne', 'Tony']
 guttenavn = ['Jakob']
-
 
 if kjønn in ['M', 'I']:
     print('du er ikke kvinne')
@@ -48,7 +96,6 @@ if year % 4 == 0 and (year % 400 == 0 or year % 100 != 0):
     print('Skuddår')
 else:
     print('assår')
-
 
 # Oppgave 4
 letters = input('a-h: ').lower()
@@ -99,13 +146,12 @@ options = ['papir', 'saks', 'stein']
 jeg = input('Velg papir,saks eller stein:')
 maskin = random.choice(options)
 
-
 print('Maskinen velger', maskin)
 if jeg == maskin:
     print('uavgjort')
 elif (jeg == 'papir' and maskin == 'stein') or \
-    (jeg == 'saks' and maskin == 'papir') or \
-    (jeg == 'stein' and maskin == 'saks'):
+        (jeg == 'saks' and maskin == 'papir') or \
+        (jeg == 'stein' and maskin == 'saks'):
     print('du vant')
 else:
     print('maskinen vant')

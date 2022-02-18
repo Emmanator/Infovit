@@ -1,5 +1,7 @@
 import random
 
+# Avsnitt 4.14 (Python for Everyone)
+# Exercise 1
 
 # Oppgave 1
 # a)
