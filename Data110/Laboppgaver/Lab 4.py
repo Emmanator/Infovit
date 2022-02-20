@@ -1,5 +1,3 @@
-import random
-
 # Avsnitt 4.14 (Python for Everyone)
 # Exercise 1
 
@@ -37,6 +35,9 @@ def fullname(firstname, lastname, middlename=None):
 
 
 # Oppgave 4
+import random
+
+
 Spar = '\u2660'
 Ruter = '\u2666'
 Kløver = '\u2663'
@@ -75,6 +76,10 @@ def n2w(number):
 
 # Oppgave 6
 def sorter3(a, b, c):
+    # if b<=a: a,b=b,a
+    # if b>c: b,c=c,b
+    # if b<=a: a,b=b,a
+    # print(x,y,z)
     if a <= b <= c:
         return f'{a} {b} {c}'
     if a <= c <= b:
@@ -106,3 +111,6 @@ stek i 15 minutter ved 200 grader""")
 brett over den andre halvparten og
 klem kantene sammen
 stek i 20 minutter ved 220 grader""")
+
+
+# Oppgave 8
