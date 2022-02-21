@@ -4,7 +4,8 @@ import math
 
 def pi(d=2):  # uten noe verdi går funksjonen automatisk til 2
     if d > 15:
-        return 'too many decimals'
+        print('For mange desimaler')
+        return math.pi
     else:
         return f'{math.pi:.{d}f}'
 

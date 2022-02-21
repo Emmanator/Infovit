@@ -114,3 +114,15 @@ stek i 20 minutter ved 220 grader""")
 
 
 # Oppgave 8
+x = 5
+y = 10
+
+def bytt_xy(v1, v2):
+    global x
+    global y
+    print (f'{x} {y}')
+    x = v2
+    y = v1
+    return f'{x} {y}'
+
+
