@@ -149,7 +149,7 @@ def permutasjoner(tekst, i, lengde):
             tekst[i], tekst[j] = tekst[j], tekst[i]
 
 
-string = 'abc'
+string = str(input())
 n = len(string)
 tekst = list(string)
 permutasjoner(tekst, 0, n)
