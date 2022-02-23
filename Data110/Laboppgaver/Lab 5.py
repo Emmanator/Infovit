@@ -123,26 +123,33 @@ def stein_saks_papir():
 # Oppgave 7
 # a)
 def blanke(n):
-    for i in range(n):
-        blank = ' ' * i
-        print(f'{blank}{i}')
-
-
-# b)
-def tegn(n):
     if n < 1 or n > 9:
         return 'må være mellom 1-9'
     for i in range(n):
-        blank = ' ' * i
-        print(blank, str(f'{i + 1}' * n))
+        print(str(f'{i + 1} ' * n))
 
 
-# c)
-def ruter(n, innrykk=0):
+# b)
+def ruter(n):
+    line = ''
+    for j in range(1, n + 1):
+        line += str(f'{j} ')
     for i in range(n):
-        blank = ' ' * i
-        print(f'{blank}{i}')
-        for i in range(n):
-            print(str(i) + ' ', end='')
+        print(' ' * i + line)
 
-ruter(6)
+
+# Oppgave 8
+def permutasjoner(tekst, i, lengde):
+    if i == lengde:
+        print(''.join(tekst))
+    else:
+        for j in range(i, lengde):
+            tekst[i], tekst[j] = tekst[j], tekst[i]
+            permutasjoner(tekst, i + 1, lengde)
+            tekst[i], tekst[j] = tekst[j], tekst[i]
+
+
+string = 'abc'
+n = len(string)
+tekst = list(string)
+permutasjoner(tekst, 0, n)
