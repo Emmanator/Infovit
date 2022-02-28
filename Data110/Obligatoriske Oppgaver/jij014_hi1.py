@@ -22,9 +22,9 @@ def temperaturKonvertering(degrees: float, unit: str = 'C') -> float:  # degrees
 
 
 # Oppgave 3
-history = []  # er for siste endring historie i velg()
-saldo = 500  # baseline saldo
-rentesats = 0.01  # baseline rente
+history = []        # er for siste endring historie i velg() funksjonen
+saldo = 500         # baseline saldo
+rentesats = 0.01    # baseline rente
 
 
 # innskudd() tar mengden og legger det til history som en string, og gir saldo en new verdi
