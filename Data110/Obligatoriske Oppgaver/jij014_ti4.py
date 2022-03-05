@@ -1,6 +1,5 @@
 # Oppgave 1
 def faktorial1(n):
-    print(f'oooooooo nuymbers: {n}')
     if n <= 1:
         return 1
     else:
