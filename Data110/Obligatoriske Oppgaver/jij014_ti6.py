@@ -16,16 +16,17 @@ def add():  # En funksjon som skriver til telefon.txt
 
 
 # Oppgave 2
-def endre():
+def endre():  # bestemte meg igjen for å lage en funksjon
     with open('telefon.txt', 'r') as f:
         with open('telefon_new.txt', 'w') as c:
             navn = input('Navn: ')
             for i in f:
-                if i.startswith(navn):
+                if i.startswith(navn):  # når en linje starter med navn skjer dette
                     split = i.split()
                     print(f'Gammelt telefonnummer: {split[-1]}')
                     ny_tlf = input('Nytt nummer: ')
-                    c.write(f'{split[0]} {ny_tlf}\n')
+                    c.write(f'{split[0]} {ny_tlf}\n')  # skriver navn og ny tlf istedefor det gamle
+                # ellers så skriver den bare linjen
                 else:
                     c.write(i)
     os.remove('telefon.txt')
@@ -40,9 +41,3 @@ def fjernVokaler(text):  # bruker tekst variabel så det funker med flere filer
             for i in f.read():  # bruker read for å lese hver karakter i teksdokumentet
                 if i not in vokaler:
                     c.write(i)
-
-
-
-
-
-fjernVokaler('treSmåMusikanter.txt')
