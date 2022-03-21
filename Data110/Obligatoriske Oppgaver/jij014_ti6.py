@@ -41,3 +41,4 @@ def fjernVokaler(text):  # bruker tekst variabel så det funker med flere filer
             for i in f.read():  # bruker read for å lese hver karakter i teksdokumentet
                 if i not in vokaler:
                     c.write(i)
+
