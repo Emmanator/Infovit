@@ -7,4 +7,14 @@ def flytdiagram(n: int):
         print(f'n -= 1: {n}')
     return s
 
-print(flytdiagram(5))
+
+def faktorial1(n):  # Rekursiv funksjon
+    if n <= 1:
+        return 1
+    else:
+        return faktorial1(n - 1) * n
+
+
+a = faktorial1(10)
+b = faktorial1(7)
+print(a / b)
