@@ -1,3 +1,5 @@
+import sys
+
 emner = ['INFO100', 'INFO104', 'ECON100', 'JAP100', 'JAP110', 'INFO120', 'INFO125', 'KOGVIT101', 'JAP120', 'ECON200',
          'ECON220', 'ECON240', 'ECON300', 'ECON320', 'ECON340']
 karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JAP110': 'C', 'KOGVIT101': 'B',
@@ -100,7 +102,6 @@ def velg():
         case '4':
             karaktersnitt()
         case '5':
-            for i in history[-3:]:
-                print(i)
+            sys.exit()
         case _:
             print('Velg 1-5.')
