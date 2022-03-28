@@ -156,12 +156,12 @@ def start():
     meny()
     last()
     while True:
-        choice = input('Velg handling (0 for meny)> ')
+        choice = input('Velg handling (0 for meny): ')
         match choice:  # bruker match case istedefor if/elif/else (Krever Python 3.10) syns det ser ryddigere ut.
             case '0':
                 meny()
             case '1':
-                print('Velg fag og/eller emnenivå (<enter> for alle)')
+                print('Velg fag og/eller emnenivå (<enter> for alle): ')
                 field = field_get()
                 nivå = nivå_get()
 
@@ -173,7 +173,7 @@ def start():
             case '3':
                 karakter_sett()
             case '4':
-                print('Velg fag og/eller emnenivå (<enter> for alle)')
+                print('Velg fag og/eller emnenivå (<enter> for alle): ')
                 field = field_get()
                 nivå = nivå_get()
 
