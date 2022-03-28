@@ -7,6 +7,10 @@ karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JA
 fagområde = {'JAP': 'japansk', 'INF': 'informasjonsvitenskap', 'ECO': 'økonomi', 'KOG': 'kognitivvitenskap'}
 
 
+def emne():
+    return
+
+
 def emneliste():
     global emner
     global karakterer
@@ -41,19 +45,20 @@ def add():
 
 
 def karakter():
-    global emner
-    global karakterer
-
     emne = input('Emne: ')
     while emne not in emner:
         emne = input('Må være et gyldig emne: ')
 
     sett_karakter = input('Karakter (<enter> for å slette): ')
-    while sett_karakter not in 'ABCDEF':
+    while sett_karakter not in ['A', 'B', 'C', 'D', 'E', 'F', '']:
         sett_karakter = input('Må være karakter A-F: ')
 
+    if sett_karakter == '':
+        if emne in karakterer:
+            del karakterer[emne]
+        return
+
     karakterer[emne] = sett_karakter
-    return
 
 
 def karaktersnitt():
@@ -93,7 +98,7 @@ def velg():
 --------------------""")
     choice = input('Velg handling: ')
     match choice:  # bruker match case istedefor if/elif/else (Krever Python 3.10) syns det ser ryddigere ut.
-        case '1':  # Match case ser mye ryddigere ut i denne sammenhengen, enn en rekke med if/elif/else statements imo.
+        case '1':
             emneliste()
         case '2':
             add()
@@ -105,3 +110,7 @@ def velg():
             sys.exit()
         case _:
             print('Velg 1-5.')
+
+
+while True:
+    velg()
