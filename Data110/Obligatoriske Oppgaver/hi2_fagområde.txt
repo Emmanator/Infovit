@@ -1,0 +1,4 @@
+JAP japansk
+INFO informasjonsvitenskap
+ECON økonomi
+KOGVIT kognitivvitenskap
