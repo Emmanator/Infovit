@@ -22,7 +22,6 @@ def get_graded_subjects(to_grade: list[str]) -> dict[str, str | None]:
             graded[i] = karakterer[i]
         else:
             graded[i] = None
-
     return graded
 
 
