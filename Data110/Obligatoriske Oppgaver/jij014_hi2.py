@@ -1,8 +1,18 @@
 # Hovedinnlevering 2
-# liste og dictionary på starten som fylles opp med load() funksjonen
+# liste og dictionary på starten som fylles opp med load() funksjonen.
 emner = []
 karakterer = {}
 fagområde = {}
+
+# Siden mitt.uib ikke lar meg levere textfiler filer så har jeg inkludert informasjonen for å generere
+# teksfilene her, de blir generert med lagre() funksjonen.
+# Fjern kommentar tegnet for å genere teksfilene med informasjonen under. Kommenter de ut etter filene er generert.
+# emner = ['INFO100', 'INFO104', 'ECON100', 'JAP100', 'JAP110', 'INFO120', 'INFO125', 'KOGVIT101', 'JAP120',
+#         'ECON200', 'ECON220', 'ECON240', 'ECON300', 'ECON320', 'ECON3240', 'GEO125']
+# karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JAP110': 'C', 'KOGVIT101': 'B',
+#             'ECON300': 'F', 'ECON320': 'A', 'ECON340': 'B', 'INFO125': 'B'}
+# fagområde = {'JAP': 'japansk', 'INFO': 'informasjonsvitenskap', 'ECON': 'økonomi', 'KOGVIT': 'kognitivvitenskap',
+#             'GEO': 'geografi'}
 
 
 def lagre():  # denne funksjonen skriver all informasjonen i listen og dictionary til en text fil
@@ -88,9 +98,12 @@ def add():
 
 
 def karakter_sett():
-    emne2 = input('Emne: ')
-    while emne2 not in emner:
-        emne2 = input('Må være et gyldig emne: ')
+    emne2 = input('Emne (<enter> for å avbryte): ')
+
+    while emne2 not in emner and emne2 != '':
+        emne2 = input('Må være et gyldig emne (<enter> for å avbryte): ')
+    if emne2 == '':  # Metode for å unngå å sitte fast i denne funksjonen.
+        return
 
     sett_karakter = input('Karakter (<enter> for å slette): ')
     while sett_karakter not in ['A', 'B', 'C', 'D', 'E', 'F', '']:
@@ -145,8 +158,8 @@ def fagområde_get():
 
 def nivå_get():
     nivå = input('Nivå: ')
-    while nivå != '' and nivå[0] not in ['1', '2', '3']:    # forsikrer at det er et gyldig nivå
-        nivå = input('Nivå (må være gyldig nivå: ')         # skjekker bare starten av nivå tallet
+    while nivå != '' and nivå[0] not in ['1', '2', '3']:  # forsikrer at det er et gyldig nivå
+        nivå = input('Nivå (må være gyldig nivå: ')  # skjekker bare starten av nivå tallet
     nivå = nivå or None
     return nivå
 

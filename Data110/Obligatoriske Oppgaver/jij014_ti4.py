@@ -39,7 +39,7 @@ class Monark:
 
     def skriv(self):  # hele denne greia er mega jank, men gjør hva som ønskes av oppgaven.
         if self.etterkommer is None:
-            print(f'{self.navn} av {self.nasjon}, tiltrådt: {self.fra}, etterfølger: None')
+            print(f'{self.navn} av {self.nasjon}, tiltrådt: {self.fra}')
         else:
             print(f'{self.navn} av {self.nasjon}, tiltrådt: {self.fra}, etterfølger: {self.etterkommer.navn}')
 

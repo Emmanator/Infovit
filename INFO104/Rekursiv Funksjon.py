@@ -6,4 +6,4 @@ def faktorial(n):
         return faktorial(n - 1) * n
 
 
-def
+print(faktorial(52))
