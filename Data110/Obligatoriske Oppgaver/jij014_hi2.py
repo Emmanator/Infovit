@@ -9,7 +9,6 @@ fagområde = {}
 
 # Siden mitt.uib ikke lar meg levere textfiler filer så har jeg inkludert en funksjon som lager et sett tekst filer
 # med noen eksempel verdier
-
 def create_default_file():
     global emner
     global karakterer
@@ -23,8 +22,7 @@ def create_default_file():
         karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JAP110': 'C', 'KOGVIT101': 'B',
                       'ECON300': 'F', 'ECON320': 'A', 'ECON340': 'B', 'INFO125': 'B'}
         fagområde = {'JAP': 'japansk', 'INFO': 'informasjonsvitenskap', 'ECON': 'økonomi',
-                     'KOGVIT': 'kognitivvitenskap',
-                     'GEO': 'geografi'}
+                     'KOGVIT': 'kognitivvitenskap', 'GEO': 'geografi'}
         lagre()
 
 
@@ -227,3 +225,5 @@ def start():
                 lagre()
             case _:
                 print('Velg 0-6.')
+
+start()
