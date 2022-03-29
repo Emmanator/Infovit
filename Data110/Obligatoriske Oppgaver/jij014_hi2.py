@@ -76,8 +76,14 @@ def vis_gradert(graded: dict[str, str | None]):
 
 
 def add():
-    global emner
-    nytt_emne = str(input('Nytt emne: '))
+    nytt_emne = input('Nytt emne(<enter> for å avbryte): ')
+
+    # Ser om nytt_emne sin fagkode er en gyldig key i fagområde, ellers så spør det om et gyldig emne.
+    while nytt_emne[:-3] not in fagområde.keys() and nytt_emne != '':
+        nytt_emne = str(input('Nytt emne (Må være gyldig emne, <enter> for å avbryte): '))
+    if nytt_emne == '':
+        return
+
     emner.append(nytt_emne)
 
 
@@ -128,7 +134,7 @@ def karaktersnitt(graded):
 
 
 # bruker funskoner for å hente hvilket fag/nivå av fag brukeren ønsker
-# gjør det lettere å bruke koden flere ganger
+# gjør det lettere å bruke koden flere ganger som i handling 1 og 4
 def fagområde_get():
     field = input('Fag: ')
     while field != '' and field not in fagområde.values():
@@ -139,8 +145,8 @@ def fagområde_get():
 
 def nivå_get():
     nivå = input('Nivå: ')
-    while nivå != '' and nivå[0] not in ['1', '2', '3']:
-        nivå = input('Nivå (må være gyldig nivå: ')
+    while nivå != '' and nivå[0] not in ['1', '2', '3']:    # forsikrer at det er et gyldig nivå
+        nivå = input('Nivå (må være gyldig nivå: ')         # skjekker bare starten av nivå tallet
     nivå = nivå or None
     return nivå
 
