@@ -226,4 +226,5 @@ def start():
             case _:
                 print('Velg 0-6.')
 
+
 start()
