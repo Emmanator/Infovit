@@ -188,8 +188,8 @@ def meny():
 
 def start():
     meny()  # meny() og load() kjøres en gang på starten av funksjonen
-    load()
     create_default_file()
+    load()
 
     while True:
         choice = input('Velg handling (0 for meny): ')
