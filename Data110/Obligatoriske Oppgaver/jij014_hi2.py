@@ -1,9 +1,51 @@
+# Hovedinnlevering 2
+# liste og dictionary på starten som fylles opp med load() funksjonen
 emner = []
 karakterer = {}
 fagområde = {}
 
 
-def get_subjects(area: str | None, level: str | None) -> list[str]:
+def lagre():  # denne funksjonen skriver all informasjonen i listen og dictionary til en text fil
+    with open('jij014_hi2_emner.txt', 'w', encoding='utf-8') as a:  # utf-8 encoding for å lese æøå
+        for i in emner:
+            a.write(i)
+            a.write('\n')  # \n for å indikere ny linje i tekstdokumentet
+
+    with open('jij014_hi2_fagområde.txt', 'w', encoding='utf-8') as s:
+        for k, v in fagområde.items():
+            s.write(f'{k} {v}')  # legger til mellomrom for å splitte elementene senere
+            s.write('\n')
+
+    with open('jij014_hi2_karakterer.txt', 'w', encoding='utf-8') as s:
+        for k, v in karakterer.items():
+            s.write(f'{k} {v}')
+            s.write('\n')
+
+
+def load():  # Laster inn data fra tekstfiler og legger de til listen/dictionary på starten
+    global emner
+    global karakterer
+    global fagområde
+
+    emner = []
+    with open('jij014_hi2_emner.txt', 'r', encoding='utf-8') as a:
+        for i in a:
+            emner.append(i[:-1])  # :-1 for å fjerne \n karakteren
+
+    karakterer = {}
+    with open('jij014_hi2_karakterer.txt', 'r', encoding='utf-8') as s:
+        for i in s:
+            k, v = i.split(' ')
+            karakterer[k] = v[:-1]
+
+    fagområde = {}
+    with open('jij014_hi2_fagområde.txt', 'r', encoding='utf-8') as s:
+        for i in s:
+            k, v = i.split(' ')
+            fagområde[k] = v[:-1]
+
+
+def hent_emner(area: str | None, level: str | None) -> list[str]:
     matching = []
 
     for i in emner:
@@ -14,7 +56,7 @@ def get_subjects(area: str | None, level: str | None) -> list[str]:
     return matching
 
 
-def get_graded_subjects(to_grade: list[str]) -> dict[str, str | None]:
+def hent_karakter(to_grade: list[str]) -> dict[str, str | None]:
     graded = {}
 
     for i in to_grade:
@@ -25,7 +67,7 @@ def get_graded_subjects(to_grade: list[str]) -> dict[str, str | None]:
     return graded
 
 
-def show_graded(graded: dict[str, str | None]):
+def vis_gradert(graded: dict[str, str | None]):
     for sub in sorted(graded.keys()):
         if graded[sub] is None:
             print(sub)
@@ -37,7 +79,6 @@ def add():
     global emner
     nytt_emne = str(input('Nytt emne: '))
     emner.append(nytt_emne)
-    return
 
 
 def karakter_sett():
@@ -86,7 +127,9 @@ def karaktersnitt(graded):
             return 'F'
 
 
-def field_get():
+# bruker funskoner for å hente hvilket fag/nivå av fag brukeren ønsker
+# gjør det lettere å bruke koden flere ganger
+def fagområde_get():
     field = input('Fag: ')
     while field != '' and field not in fagområde.values():
         field = input('Fag (må være gyldig emne): ')
@@ -102,44 +145,6 @@ def nivå_get():
     return nivå
 
 
-def lagre():
-    with open('hi2_emner.txt', 'w', encoding='utf-8') as a:
-        for i in emner:
-            a.write(i)
-            a.write('\n')
-    with open('hi2_fagområde.txt', 'w', encoding='utf-8') as s:
-        for k, v in fagområde.items():
-            s.write(f'{k} {v}')
-            s.write('\n')
-    with open('hi2_karakterer.txt', 'w', encoding='utf-8') as s:
-        for k, v in karakterer.items():
-            s.write(f'{k} {v}')
-            s.write('\n')
-
-
-def last():
-    global emner
-    global karakterer
-    global fagområde
-
-    emner = []
-    with open('hi2_emner.txt', 'r', encoding='utf-8') as a:
-        for i in a:
-            emner.append(i[:-1])
-
-    karakterer = {}
-    with open('hi2_karakterer.txt', 'r', encoding='utf-8') as s:
-        for i in s:
-            k, v = i.split(' ')
-            karakterer[k] = v[:-1]
-
-    fagområde = {}
-    with open('hi2_fagområde.txt', 'r', encoding='utf-8') as s:
-        for i in s:
-            k, v = i.split(' ')
-            fagområde[k] = v[:-1]
-
-
 def meny():
     print("""--------------------
 1 - Emneliste
@@ -152,32 +157,33 @@ def meny():
 
 
 def start():
-    meny()
-    last()
+    meny()  # meny() og load() kjøres en gang på starten av funksjonen
+    load()
+
     while True:
         choice = input('Velg handling (0 for meny): ')
         match choice:  # bruker match case istedefor if/elif/else (Krever Python 3.10) syns det ser ryddigere ut.
             case '0':
-                meny()
+                meny()  # for å vis menyen igjen
             case '1':
                 print('Velg fag og/eller emnenivå (<enter> for alle): ')
-                field = field_get()
+                field = fagområde_get()
                 nivå = nivå_get()
 
-                a = get_subjects(field, nivå)
-                b = get_graded_subjects(a)
-                show_graded(b)
+                a = hent_emner(field, nivå)
+                b = hent_karakter(a)
+                vis_gradert(b)
             case '2':
                 add()
             case '3':
                 karakter_sett()
             case '4':
                 print('Velg fag og/eller emnenivå (<enter> for alle): ')
-                field = field_get()
+                field = fagområde_get()
                 nivå = nivå_get()
 
-                a = get_subjects(field, nivå)
-                b = get_graded_subjects(a)
+                a = hent_emner(field, nivå)
+                b = hent_karakter(a)
                 print(karaktersnitt(b))
             case '5':
                 save = input('Vil du lagre endringene? (j/n) ')
