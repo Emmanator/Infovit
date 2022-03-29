@@ -1,18 +1,30 @@
 # Hovedinnlevering 2
 # liste og dictionary på starten som fylles opp med load() funksjonen.
+import os
+
 emner = []
 karakterer = {}
 fagområde = {}
 
+
 # Siden mitt.uib ikke lar meg levere textfiler filer så har jeg inkludert informasjonen for å generere
 # teksfilene her, de blir generert med lagre() funksjonen.
 # Fjern kommentar tegnet for å genere teksfilene med informasjonen under. Kommenter de ut etter filene er generert.
-# emner = ['INFO100', 'INFO104', 'ECON100', 'JAP100', 'JAP110', 'INFO120', 'INFO125', 'KOGVIT101', 'JAP120',
-#         'ECON200', 'ECON220', 'ECON240', 'ECON300', 'ECON320', 'ECON3240', 'GEO125']
-# karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JAP110': 'C', 'KOGVIT101': 'B',
-#             'ECON300': 'F', 'ECON320': 'A', 'ECON340': 'B', 'INFO125': 'B'}
-# fagområde = {'JAP': 'japansk', 'INFO': 'informasjonsvitenskap', 'ECON': 'økonomi', 'KOGVIT': 'kognitivvitenskap',
-#             'GEO': 'geografi'}
+
+def create_default_file():
+    global emner
+    global karakterer
+    global fagområde
+    if not os.path.exists('jij014_hi2_emner.txt') or not os.path.exists(
+            'jij014_hi2_fagområde.txt') or not os.path.exists('jij014_hi2_karakterer.txt'):
+        emner = ['INFO100', 'INFO104', 'ECON100', 'JAP100', 'JAP110', 'INFO120', 'INFO125', 'KOGVIT101', 'JAP120',
+                 'ECON200', 'ECON220', 'ECON240', 'ECON300', 'ECON320', 'ECON3240', 'GEO125']
+        karakterer = {'INFO100': 'C', 'INFO104': 'B', 'ECON100': 'B', 'JAP100': 'C', 'JAP110': 'C', 'KOGVIT101': 'B',
+                      'ECON300': 'F', 'ECON320': 'A', 'ECON340': 'B', 'INFO125': 'B'}
+        fagområde = {'JAP': 'japansk', 'INFO': 'informasjonsvitenskap', 'ECON': 'økonomi',
+                     'KOGVIT': 'kognitivvitenskap',
+                     'GEO': 'geografi'}
+        lagre()
 
 
 def lagre():  # denne funksjonen skriver all informasjonen i listen og dictionary til en text fil
@@ -215,4 +227,4 @@ def start():
                 print('Velg 0-6.')
 
 
-start()
+create_default_file()
