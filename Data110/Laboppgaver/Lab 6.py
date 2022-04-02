@@ -212,3 +212,6 @@ class Bank:
             return
         self.saldo -= mengde
         destinasjon.saldo += mengde
+
+# Oppgave 5
+
