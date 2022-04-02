@@ -213,5 +213,45 @@ class Bank:
         self.saldo -= mengde
         destinasjon.saldo += mengde
 
+
 # Oppgave 5
+class kø:
+    waitinglist = []
+    ta_ut = []
+    neste = []
+
+    # def __init__(self, n):
+    #     self.waitinglist = waitinglist
+
+    def sett_inn(self, navn):
+        self.waitinglist.append(navn)
+
+    def skriv(self):
+        for i in self.waitinglist:
+            print(i)
+
+    def ta_ut(self):
+        if not self.waitinglist:
+            print('Køen er tom')
+        else:
+            a = self.waitinglist[0]
+            self.neste = a
+            print(f'Tar ut {a} fra køen')
+            self.waitinglist.remove(a)
+
+    def neste(self):
+        print(self.neste)
+
+
+venteliste = kø()
+venteliste.sett_inn('Per')
+venteliste.sett_inn('Kari')
+venteliste.sett_inn('Liv')
+venteliste.skriv()
+venteliste.ta_ut()
+venteliste.skriv()
+venteliste.ta_ut()
+venteliste.ta_ut()
+venteliste.skriv()
+venteliste.ta_ut()
 
