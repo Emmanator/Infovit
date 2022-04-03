@@ -134,7 +134,7 @@ class Konto:
         self.rentesats = rentesats
 
     def skriv(self):
-        print(self.kontonummer, '(' + str(self.rentesats) + '):', \
+        print(self.kontonummer, '(' + str(self.rentesats) + '):',
               self.saldo, ', Innehaver: ' + self.innehaver)
 
     def innskudd(self, beløp):
@@ -217,11 +217,6 @@ class Bank:
 # Oppgave 5
 class kø:
     waitinglist = []
-    ta_ut = []
-    neste = []
-
-    # def __init__(self, n):
-    #     self.waitinglist = waitinglist
 
     def sett_inn(self, navn):
         self.waitinglist.append(navn)
@@ -234,13 +229,13 @@ class kø:
         if not self.waitinglist:
             print('Køen er tom')
         else:
-            a = self.waitinglist[0]
-            self.neste = a
-            print(f'Tar ut {a} fra køen')
-            self.waitinglist.remove(a)
+            print(f'Tar ut {self.waitinglist.pop(0)} fra køen')
 
     def neste(self):
-        print(self.neste)
+        if not self.waitinglist:
+            print('ingen i køen lol')
+        else:
+            print(self.waitinglist[0])
 
 
 venteliste = kø()
@@ -249,9 +244,37 @@ venteliste.sett_inn('Kari')
 venteliste.sett_inn('Liv')
 venteliste.skriv()
 venteliste.ta_ut()
+venteliste.sett_inn('Cum')
+venteliste.skriv()
+venteliste.ta_ut()
+venteliste.neste()
+venteliste.ta_ut()
 venteliste.skriv()
 venteliste.ta_ut()
 venteliste.ta_ut()
-venteliste.skriv()
-venteliste.ta_ut()
+venteliste.neste()
+venteliste.neste()
 
+# Oppgave 6
+class Fibb:
+    fibb1 = 1
+    fibb2 = 0
+
+    def neste(self):
+        result = self.fibb1
+
+        b = self.fibb1 + self.fibb2
+        self.fibb2 = self.fibb1
+        self.fibb1 = b
+
+        return result
+
+
+# c = Fibb()
+# for i in range(10):
+#     print(c.neste())
+
+# Oppgave 7
+class forjenger:
+    father = None
+    mother = None
