@@ -1,6 +1,5 @@
 import tkinter
 
-
 # Oppgave 1
 gui = tkinter.Tk()
 
@@ -9,7 +8,6 @@ ramme.pack()
 knapp = tkinter.Button(ramme, text='Goodbye.', command=lambda: gui.destroy())
 knapp.pack()
 gui.mainloop()
-
 
 # Oppgave 2
 gui2 = tkinter.Tk()

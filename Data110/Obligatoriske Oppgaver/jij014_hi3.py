@@ -1,7 +1,8 @@
 # Hovedinnlevering 3
+import pickle
+import itertools
 from random import *
 
-# import itertools
 # import pickle
 
 deck = []
@@ -9,36 +10,52 @@ deck = []
 
 def kort():
     global deck
-    a = 6
-    # deck = list(itertools.product(['\u2665', '\u2663', '\u2666', '\u2660'], ['A', '7', '8', '9', '10', 'J', 'Q', 'K']
-    for i in range(7, 15):
-        a += 1
-        if a > 9:
-            deck.append(f'\u2665{i}')
-            deck.append(f'\u2663{i}')
-            deck.append(f'\u2666{i}')
-            deck.append(f'\u2660{i}')
-        else:
-            deck.append(f'\u2665 {i}')
-            deck.append(f'\u2663 {i}')
-            deck.append(f'\u2666 {i}')
-            deck.append(f'\u2660 {i}')
+    deck = []
+    symboler = ['\u2665', '\u2663', '\u2666', '\u2660']
+    tall = ['A', '7', '8', '9', '10', 'J', 'Q', 'K']
+    deck = [n + l.rjust(2) for (n, l) in itertools.product(symboler, tall)]
+    # for n in symboler:
+    #    for l in tall:
+    #        deck.append(n + l.rjust(2))
+    # if len(n + l) == 3:
+    #     deck.append(f'{n}{l}')
+    # else:
+    #     deck.append(f'{n} {l}')
+    # for i in range(7, 15):
+    #    a += 1
+    #    if a > 9:
+    #        deck.append(f'\u2665{i}')
+    #        deck.append(f'\u2663{i}')
+    #        deck.append(f'\u2666{i}')
+    #        deck.append(f'\u2660{i}')
+    #    else:
+    #        deck.append(f'\u2665 {i}')
+    #        deck.append(f'\u2663 {i}')
+    #        deck.append(f'\u2666 {i}')
+    #        deck.append(f'\u2660 {i}')
 
 
 def stokk(splitt):
+    global deck
     shuffle(splitt)
     splitt = [splitt[x:x + 4] for x in range(0, len(splitt), 4)]
+    deck = splitt
     return splitt
 
 
 def fjern_par(c1, c2):
-    global stokker
+    global deck
     bokstaver = list('ABCDEFGH')
     conv = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
-    if c1 != c2 and c1 in bokstaver and c2 in bokstaver and stokker[conv[c1]][0][2:] == stokker[conv[c2]][0][2:]:
-        stokker[conv[c1]].pop(0)
-        stokker[conv[c2]].pop(0)
+    if c1 != c2 and c1 in bokstaver and c2 in bokstaver and deck[conv[c1]][0][2:] == deck[conv[c2]][0][2:]:
+        # try:
+        #     print(f'Removed: {deck[conv[c1]][0][1:]} Next: {(deck[conv[c1]][1][1:])}')
+        #     print(f'Removed: {(deck[conv[c2]][0][1:])} Next: {(deck[conv[c2]][1][1:])}')
+        # except:
+        #     print('shit')
+        deck[conv[c1]].pop(0)
+        deck[conv[c2]].pop(0)
     else:
         print('Feil input, prøv igjen')
 
@@ -51,22 +68,46 @@ def victory(korts):
 def loss(korts):
     kopi = []
     for i in korts:
-        try:
-            kopi.append(int(i[0][2:]))
-        except:
-            continue
+        if i:
+            kopi.append((i[0][1:]))
 
     tap_sjekk = set(kopi)
     if len(kopi) == len(tap_sjekk):
+        print(kopi, tap_sjekk)
+        print(len(kopi), len(tap_sjekk))
         return True
 
 
-def lagre():
+# Bruker pickle som lagre funksjon for å beholde hvordan deck listen ser ut mellom sesjoner
+# Gjør at staten av deck listen blir bevart, noe jeg ikke tror er mulig i en vanlig txt fil
+def lagre(kort2):
+    pickle.dump(kort2, open('The Wish.p', 'wb'))
     return
 
 
-def load():
-    return
+def last_inn():
+    global deck
+    try:
+        deck = pickle.load(open('The Wish.p', 'rb'))
+        spill(deck)
+    except FileNotFoundError:
+        print('Fant ingen lagret fil')
+
+
+# Auto-lagring funksjon, blir brukt i spill funksjonen før vært trekk
+# Tenker det kan være greit å kunne lagre uten å måtte gjøre det manuelt
+# Fra et kode perspektiv så er det basically det samme som den forrige greia da :/
+def autosave(kort2):
+    pickle.dump(kort2, open('The Wish_autosave.p', 'wb'))
+
+
+def last_inn_autosave():
+    global deck
+    try:
+        deck = pickle.load(open('The Wish_autosave.p', 'rb'))
+        spill(deck)
+    except FileNotFoundError:
+        print('Fant ingen autosave')
 
 
 def spill(korts):
@@ -79,6 +120,7 @@ def spill(korts):
             print('taper altså')
             break
         else:
+            autosave(korts)
             for index, bunke in enumerate(korts):
                 if len(bunke) > 0:
                     # test = f'{bokstaver[index]} [{bunke[0]}] {" " * (len(bunke[0]) % 2)}{"? " * len(bunke[1:])}'
@@ -99,8 +141,11 @@ def spill(korts):
                 else:
                     print(f'  0  ', end='')
         print()
-        user = input('velg kort:').upper()
-        if len(user) == 2:
+        user = input('velg kort (x for å avbryte):').upper()
+        if user == 'X':
+            start()
+            break
+        elif len(user) == 2:
             c1 = user[0]
             c2 = user[1]
             fjern_par(c1, c2)
@@ -108,12 +153,40 @@ def spill(korts):
             spill(korts)
 
 
-kort()
-stokker = stokk(deck)
-spill(stokker)
-
-
 def meny():
-    valg = input('Velg handling')
-    match valg:
+    print("""--------------------
+1 - start nytt spill
+2 - lagre spillet
+3 - hent lagret spill
+4 - hent automatisk lagret spill
+5 - avslutt
+Velg handling (0 for meny)
+--------------------""")
 
+
+def start():
+    global deck
+    meny()
+    while True:
+        valg = input('Velg handling: ')
+        match valg:
+            case '0':
+                meny()
+            case '1':
+                kort()
+                spill(stokk(deck))
+            case '2':
+                lagre(deck)
+            case '3':
+                last_inn()
+                spill(deck)
+            case '4':
+                last_inn_autosave()
+                spill(deck)
+            case '5':
+                return
+            case _:
+                print('Velg 0-4')
+
+
+start()
