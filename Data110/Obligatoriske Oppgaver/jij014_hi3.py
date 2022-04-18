@@ -1,6 +1,7 @@
 # Hovedinnlevering 3
 import pickle
 import itertools
+import sys
 from random import *
 
 # import pickle
@@ -184,9 +185,9 @@ def start():
                 last_inn_autosave()
                 spill(deck)
             case '5':
-                return
+                sys.exit()
             case _:
-                print('Velg 0-4')
+                print('Velg 0-5')
 
 
 start()
