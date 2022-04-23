@@ -14,25 +14,6 @@ def kort():
     symboler = ['\u2665', '\u2663', '\u2666', '\u2660']
     tall = ['A', '7', '8', '9', '10', 'J', 'Q', 'K']
     deck = [n + l.rjust(2) for (n, l) in itertools.product(symboler, tall)]
-    # for n in symboler:
-    #    for l in tall:
-    #        deck.append(n + l.rjust(2))
-    # if len(n + l) == 3:
-    #     deck.append(f'{n}{l}')
-    # else:
-    #     deck.append(f'{n} {l}')
-    # for i in range(7, 15):
-    #    a += 1
-    #    if a > 9:
-    #        deck.append(f'\u2665{i}')
-    #        deck.append(f'\u2663{i}')
-    #        deck.append(f'\u2666{i}')
-    #        deck.append(f'\u2660{i}')
-    #    else:
-    #        deck.append(f'\u2665 {i}')
-    #        deck.append(f'\u2663 {i}')
-    #        deck.append(f'\u2666 {i}')
-    #        deck.append(f'\u2660 {i}')
 
 
 def stokk(splitt):
@@ -49,11 +30,6 @@ def fjern_par(c1, c2):
     conv = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7}
 
     if c1 != c2 and c1 in bokstaver and c2 in bokstaver and deck[conv[c1]][0][2:] == deck[conv[c2]][0][2:]:
-        # try:
-        #     print(f'Removed: {deck[conv[c1]][0][1:]} Next: {(deck[conv[c1]][1][1:])}')
-        #     print(f'Removed: {(deck[conv[c2]][0][1:])} Next: {(deck[conv[c2]][1][1:])}')
-        # except:
-        #     print('shit')
         deck[conv[c1]].pop(0)
         deck[conv[c2]].pop(0)
     else:
@@ -123,8 +99,6 @@ def spill(korts):
             autosave(korts)
             for index, bunke in enumerate(korts):
                 if len(bunke) > 0:
-                    # test = f'{bokstaver[index]} [{bunke[0]}] {" " * (len(bunke[0]) % 2)}{"? " * len(bunke[1:])}'
-                    # print(test)
                     print(f'  {bokstaver[index]}  ', end='')
                 else:
                     print(f'  {bokstaver[index]}  ', end='')
