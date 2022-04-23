@@ -1,6 +1,7 @@
 # Hovedinnlevering 3
 import pickle
 import itertools
+import sys
 from random import *
 
 # import pickle
@@ -49,8 +50,8 @@ def loss(korts):
 
     tap_sjekk = set(kopi)
     if len(kopi) == len(tap_sjekk):
-        print(kopi, tap_sjekk)
-        print(len(kopi), len(tap_sjekk))
+        # print(kopi, tap_sjekk)
+        # print(len(kopi), len(tap_sjekk))
         return True
 
 
@@ -134,7 +135,6 @@ def meny():
 3 - hent lagret spill
 4 - hent automatisk lagret spill
 5 - avslutt
-Velg handling (0 for meny)
 --------------------""")
 
 
@@ -142,7 +142,7 @@ def start():
     global deck
     meny()
     while True:
-        valg = input('Velg handling: ')
+        valg = input('Velg handling (0 for meny): ')
         match valg:
             case '0':
                 meny()
@@ -153,14 +153,14 @@ def start():
                 lagre(deck)
             case '3':
                 last_inn()
-                spill(deck)
+                # spill(deck)
             case '4':
                 last_inn_autosave()
-                spill(deck)
+                # spill(deck)
             case '5':
-                return
+                sys.exit()
             case _:
-                print('Velg 0-4')
+                print('Velg 0-5')
 
 
 start()
