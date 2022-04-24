@@ -1,12 +1,13 @@
 # Hovedinnlevering 3
-import pickle
-import itertools
-from random import *
+import pickle  # Brukt for å lagre spillet
+import itertools  # Brukt for å stokke decket
+from random import *  # Brukt for å stokke decket
 
 
 # import pickle
 
-
+# Reglene til spillet osv. er plassert i en class. Kan gjør det lettere å kunne gjøre om interfacet til spillet til
+# tkinter som vi har lært om i TI7.
 class TheWish:
     deck = []
 
@@ -30,7 +31,7 @@ class TheWish:
             print('Feil input, prøv igjen')
 
     def victory(self):
-        if sum([len(x) for x in self.deck]) == 0:
+        if sum([len(x) for x in self.deck]) == 0:  # Ser om det ikke er noen kort igjen for å se om du vinner
             return True
 
     def loss(self):
@@ -39,9 +40,9 @@ class TheWish:
             if i:
                 kopi.append((i[0][1:]))
 
-        tap_sjekk = set(kopi)
-        if len(kopi) == len(tap_sjekk):
-            print(kopi, tap_sjekk)
+        tap_sjekk = set(kopi)  # set() gjør at alle er unike
+        if len(kopi) == len(tap_sjekk):     # så om lengden til kopi = lengden til tap_sjekk
+            print(kopi, tap_sjekk)          # så er det ingen unike kort igjen og spiller taper.
             print(len(kopi), len(tap_sjekk))
             return True
 
@@ -58,7 +59,7 @@ def spill(game):
             print('nicenice, du vinner')
             break
         elif game.loss():
-            print('taper altså')
+            print('du tapte')
             break
         else:
             game.lagre('The Wish_autosave.p')
