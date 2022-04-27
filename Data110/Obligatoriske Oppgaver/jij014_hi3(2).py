@@ -81,8 +81,9 @@ def spill(game):
                 else:
                     print(f'  0  ', end='')
         print()
-        user = input('velg kort (x for å avbryte):').upper()
+        user = input('velg kort (x for å lagre og avslutte spillet): ').upper()
         if user == 'X':
+            game.lagre('The Wish.p')
             break
         elif len(user) == 2:
             c1 = user[0]
