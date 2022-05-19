@@ -72,6 +72,7 @@ def hent_emner(area: str | None, level: str | None) -> list[str]:
     for i in emner:
         area_code = i[:-3]
         if (area is None or fagområde[area_code] == area) and (level is None or i[-3] == level[0]):
+            print(i)
             matching.append(i)
 
     return matching
