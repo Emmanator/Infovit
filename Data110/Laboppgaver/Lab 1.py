@@ -24,7 +24,7 @@ print(f'kvinneandelen er {kvinneAndel:.2f}')
 # Fra celsius til fahrenheit °F = (°C × 9/5) + 32
 # Fra fahrenheit til celsius °C = (°F − 32) × 5/9
 celsius = 15.56
-fahrenheit = 60
+fahrenheit = 80
 
 # Celsius til Fahrenheit
 CtF = (celsius * 9/5) + 32
