@@ -32,16 +32,3 @@ def oppg2():
 
 oppg1()
 oppg2()
-
-
-def f(x):
-    return x + y
-
-
-def g(x, y):
-    print(f(x - y))
-
-
-x = 2
-y = 3
-g(y, x)
