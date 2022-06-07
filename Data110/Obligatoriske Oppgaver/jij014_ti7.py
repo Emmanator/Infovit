@@ -32,3 +32,5 @@ def oppg2():
 oppg1()
 oppg2()
 
+def f(x):
+    return
