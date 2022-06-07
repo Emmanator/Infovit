@@ -42,8 +42,8 @@ class TheWish:
 
         tap_sjekk = set(kopi)  # set() gjør at alle er unike
         if len(kopi) == len(tap_sjekk):     # så om lengden til kopi = lengden til tap_sjekk
-            print(kopi, tap_sjekk)          # så er det ingen unike kort igjen og spiller taper.
-            print(len(kopi), len(tap_sjekk))
+            # print(kopi, tap_sjekk)          # så er det ingen unike kort igjen og spiller taper.
+            # print(len(kopi), len(tap_sjekk))
             return True
 
     # Bruker pickle som lagre funksjon for å beholde hvordan deck listen ser ut mellom sesjoner
@@ -64,10 +64,10 @@ def spill(game):
         else:
             game.lagre('The Wish_autosave.p')
             for index, bunke in enumerate(game.deck):
-                if len(bunke) > 0:
-                    print(f'  {bokstaver[index]}  ', end='')
-                else:
-                    print(f'  {bokstaver[index]}  ', end='')
+                # if len(bunke) > 0:
+                #     print(f'  {bokstaver[index]}  ', end='')
+                # else:
+                print(f'  {bokstaver[index]}  ', end='')
             print()
             for index, bunke in enumerate(game.deck):
                 if len(bunke) > 0:

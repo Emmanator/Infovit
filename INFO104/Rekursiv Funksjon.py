@@ -6,4 +6,7 @@ def faktorial(n):
         return faktorial(n - 1) * n
 
 
-print(faktorial(52))
+a = faktorial(20)
+b = faktorial(16)
+
+print(a / b)

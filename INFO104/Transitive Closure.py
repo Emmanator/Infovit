@@ -1,7 +1,7 @@
-set_a = {(1, 2), (1, 3), (1, 4), (2, 3), (5, 6), (5, 7)}
-set_b = {(4, 8), (8, 7), (7, 4)}
+set_a = {('anne', 'bjarne'), ('bjarne', 'anne'), ('bjarne', 'cecilie'), ('cecilie', 'daniel'), ('daniel', 'cecilie'), ('eva', 'eva')}
+# set_b = {(4, 8), (8, 7), (7, 4)}
 
-union = set_a | set_b
+union = set_a # | set_b
 print(union)
 
 def transitiveclosure(d):
@@ -12,7 +12,7 @@ def transitiveclosure(d):
             for b in new_set:
                 direct_path = (a[0], b[1])
                 if a[1] == b[0] and not (direct_path in new_set):
-                    print(f'found {a} and {b} adding {direct_path}')
+                    # print(f'found {a} and {b} adding {direct_path}')
                     new_path.add(direct_path)
         new_set = new_set | new_path
         if len(new_path) == 0:
