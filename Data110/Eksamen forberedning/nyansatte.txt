@@ -1,0 +1,4 @@
+Kari,Personalavdeling,55667788
+Ola,Salgsavdeling,55434332
+Liv,Produksjonsavdeling,99231415
+Jens,Salgsavdeling,55887777

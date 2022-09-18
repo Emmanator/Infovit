@@ -238,22 +238,23 @@ class kø:
             print(self.waitinglist[0])
 
 
-venteliste = kø()
-venteliste.sett_inn('Per')
-venteliste.sett_inn('Kari')
-venteliste.sett_inn('Liv')
-venteliste.skriv()
-venteliste.ta_ut()
-venteliste.sett_inn('Cum')
-venteliste.skriv()
-venteliste.ta_ut()
-venteliste.neste()
-venteliste.ta_ut()
-venteliste.skriv()
-venteliste.ta_ut()
-venteliste.ta_ut()
-venteliste.neste()
-venteliste.neste()
+# venteliste = kø()
+# venteliste.sett_inn('Per')
+# venteliste.sett_inn('Kari')
+# venteliste.sett_inn('Liv')
+# venteliste.skriv()
+# venteliste.ta_ut()
+# venteliste.sett_inn('Cum')
+# venteliste.skriv()
+# venteliste.ta_ut()
+# venteliste.neste()
+# venteliste.ta_ut()
+# venteliste.skriv()
+# venteliste.ta_ut()
+# venteliste.ta_ut()
+# venteliste.neste()
+# venteliste.neste()
+
 
 # Oppgave 6
 class Fibb:
@@ -275,6 +276,54 @@ class Fibb:
 #     print(c.neste())
 
 # Oppgave 7
-class forjenger:
-    father = None
-    mother = None
+class person:
+    navn = None
+    far = None
+    mor = None
+
+    def __init__(self, navn, far=None, mor=None):
+        self.navn = navn
+        self.far = far
+        self.mor = mor
+
+    def skriv(self):
+        print(self.navn)
+
+
+def forgjenere(person, kjede: str):
+    for f in kjede:
+        match f:
+            case 'F':
+                if person.far == None:
+                    print('kjeden er for lang')
+                    break
+                person = person.far
+            case 'M':
+                if person.mor == None:
+                    print('kjeden er for lang')
+                    break
+                person = person.mor
+            case _:
+                print('Ikke gyldig input')
+                break
+        person.skriv()
+
+
+##testdata
+anders = person('Anders')
+anna = person('Anna')
+tor = person('Tor')
+guri = person('Guri')
+kjell = person('Kjell')
+olaug = person('Olaug')
+arne = person('Arne')
+solveig = person('Solveig')
+jens = person('Jens', anders, anna)
+liv = person('Liv', tor, guri)
+petter = person('Petter', kjell, olaug)
+sara = person('Sara', arne, solveig)
+ola = person('Ola', jens, liv)
+kari = person('Kari', petter, sara)
+per = person('Per', ola, kari)
+
+forgjenere(per, 'MFF')
