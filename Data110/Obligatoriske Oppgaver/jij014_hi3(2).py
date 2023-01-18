@@ -64,9 +64,6 @@ def spill(game):
         else:
             game.lagre('The Wish_autosave.p')
             for index, bunke in enumerate(game.deck):
-                # if len(bunke) > 0:
-                #     print(f'  {bokstaver[index]}  ', end='')
-                # else:
                 print(f'  {bokstaver[index]}  ', end='')
             print()
             for index, bunke in enumerate(game.deck):
@@ -76,10 +73,7 @@ def spill(game):
                     print(f'[   ]', end='')
             print()
             for index, bunke in enumerate(game.deck):
-                if len(bunke) > 0:
-                    print(f'  {len(bunke)}  ', end='')
-                else:
-                    print(f'  0  ', end='')
+                print(f'  {len(bunke)}  ', end='')
         print()
         user = input('velg kort (x for å lagre og avslutte spillet): ').upper()
         if user == 'X':
