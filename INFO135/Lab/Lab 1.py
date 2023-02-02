@@ -44,19 +44,13 @@ class Employee:
 
 
 # Exercise 2
+n = [1, 2, 3]
 
-def binary_search_big_o(l):
-    return math.ceil(math.log(l) / math.log(2))
+def binary_search_big(n: list, x):
+    mid_point =
 
-
-def bad_big_o(l):
-    return (l)
-
-
-print(binary_search_big_o(10000))
-print(bad_big_o(10000))
 # Extra task 2
-text = 'haha ball funny in yesyes'
+text = 'haha ball funny cum in ass yesyes'
 
 
 def reverse_text(t: str):
