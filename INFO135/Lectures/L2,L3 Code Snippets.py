@@ -49,7 +49,7 @@ my_list.head = node1
 node1.next = node2
 node2.next = node3
 
-print(my_list.size())
+# print(my_list.size())
 
 
 # Stack with Python List
@@ -104,9 +104,10 @@ my_stack.push('1')
 my_stack.push('2')
 my_stack.push('3')
 
-print(my_stack.pop())
-print(my_stack.pop())
-print(my_stack.pop())
+
+# print(my_stack.pop())
+# print(my_stack.pop())
+# print(my_stack.pop())
 
 
 # Queue Implementation with Python List
@@ -185,6 +186,27 @@ def selection_sort(arr):
     return new_arr
 
 
+def selection_sort_2(array):
+    length = len(array)
+
+    for i in range(length - 1):
+        min_idx = i
+
+        for j in range(i + 1, length):
+            if array[j] < array[min_idx]:
+                min_idx = j
+
+        array[i], array[min_idx] = array[min_idx], array[i]
+        return array
+
+    return array
+
+
+array = [0, 2, 3, 4, 5, 1]
+
+print("first pass", selection_sort_2(array))
+
+
 # Implementation of Insertion Sort
 def insertion_sort(arr):
     for i in range(1, len(arr)):
@@ -208,9 +230,9 @@ def bubble_sort(arr):
                 arr[i + 1] = temp
 
 
-bsort = music_count
-bubble_sort(bsort)
-print(bsort)
+# bsort = music_count
+# bubble_sort(bsort)
+# print(bsort)
 
 
 # Implementation of Quick Sort
@@ -229,9 +251,9 @@ def quick_sort(arr):
         quick_sort(right)
 
 
-qsort = music_count
-quick_sort(qsort)
-print(qsort)
+# qsort = music_count
+# quick_sort(qsort)
+# print(qsort)
 
 
 # Implementation of Merge Sort
@@ -263,6 +285,6 @@ def merge_sort(arr):
             j += 1
             k += 1
 
-msort = music_count
-merge_sort(msort)
-print(msort)
+# msort = music_count
+# merge_sort(msort)
+# print(msort)
