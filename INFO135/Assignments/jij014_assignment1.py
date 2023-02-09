@@ -6,11 +6,11 @@ def binary_search_big_o(l):
     return math.ceil(math.log(l) / math.log(2))
 
 
-# a)
+# a) 18
 print(binary_search_big_o(171476))
-# b)
+# b) 21
 print(binary_search_big_o(1100373))
-# c)
+# c) 18
 print(binary_search_big_o(260000))
 
 
@@ -47,12 +47,12 @@ a.next = b
 b.next = c
 c.next = d
 
-u = a
+def print_list(u):
+    while u is not None:
+        print(u.data)
+        u = u.next
 
-while u is not None:
-    print(u.data)
-    u = u.next
-
+print_list(a)
 
 # Assignment 3
 class Stack:
@@ -68,11 +68,6 @@ class Stack:
     def pop(self):
         return self.items.pop()
 
-    def peek(self):
-        return self.items[len(self.items) - 1]
-
-    def size(self):
-        return len(self.items)
 
 
 def reverse_list(l):
