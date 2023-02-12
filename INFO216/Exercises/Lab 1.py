@@ -85,8 +85,8 @@ for subj, pred, obj in g:
         print(subj, pred, obj)
 
 
-# Personally I found XML to be the cleanest for this, but the other options work too.
-# print(g.serialize(format='ttl'))
+
+print(g.serialize(format='ttl'))
 
 
 # Method that gets information from rdf-grapher and saves it to file

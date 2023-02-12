@@ -51,7 +51,7 @@ def quick_sort(arr):
 
 
 # print(llist_sort(sort(a)))
-print(llist_sort(quick_sort(a)))
+# print(llist_sort(quick_sort(a)))
 
 
 # Exercise 3
@@ -66,4 +66,4 @@ def find_anagram(s1: str, s2: str):
         return 'cry'
 
 
-print(find_anagram('The Detectives', 'Detect Thieves'))
+# print(find_anagram('The Detectives', 'Detect Thieves'))
