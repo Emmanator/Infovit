@@ -53,3 +53,29 @@ import hashlib as hl
 def hash_it_by_shal(user_str):
     hash_str = hl.sha1(user_str.encode()).hexdigest()
     return hash_str
+
+
+# Password class
+class Password:
+    def __init__(self):
+        user_pass = input(f'enter a password: ')
+        self.hash_pass = self.hash_it(user_pass)
+
+    def hash_it(self, user_pass):
+        self.hash_pass = hl.sha1(user_pass.encode()).hexdigest()
+        return self.hash_pass
+
+    def print_it(self):
+        print(f'Hashed password: {self.hash_pass}')
+        print(len(f'size of password: {self.hash_pass}'))
+
+    def log_in(self):
+        log_in = input(f'enter password to login: ')
+        if self.hash_pass == self.hash_it(log_in):
+            return f'fuck yeah you logged in'
+        else:
+            return f'not correct password'
+
+
+password1 = Password()
+print(password1.log_in())
