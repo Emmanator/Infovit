@@ -2,7 +2,7 @@ from rdflib import Graph
 
 g = Graph()
 
-g.parse('C:/Infovit/INFO216/Russia_investigation_kg.ttl', format('ttl'))
+g.parse('Russia_investigation_kg.ttl', format('ttl'))
 
 all_predicates_query = """
 prefix ns1: <http://example.org#>
@@ -37,20 +37,34 @@ ORDER BY DESC(?president)"""
 
 trump_pardoned = """
 prefix ns1: <http://example.org#>
-
-ASK?name (COUNT(?name) as ?count)
-WHERE {
-  ?s ns1:name ?name;
-   ns1:pardoned ns1:true;
-   ns1:president ns1:Donald_Trump
+ASK {
+    {
+        SELECT (COUNT(?name) as ?count)
+        WHERE {
+        ?s ns1:name ?name;
+            ns1:pardoned true;
+            ns1:president ns1:Donald_Trump
+        }
+    }
+    filter( ?count > 5)
 }
-ASK """
+"""
 
-test = g.query(trump_pardoned)
+describe = """
+prefix ns1: <http://example.org/>
+DESCRIBE ns1:Donald_Trump
+WHERE {
+
+}
+"""
+
+test = g.query(describe)
 for row in test:
     print(row)
 
-dict = {}
+
+
+# dict = {}
 # for press, person in test:
 #
 #     if press not in dict:
