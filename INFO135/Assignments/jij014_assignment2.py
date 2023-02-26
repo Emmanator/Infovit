@@ -20,22 +20,27 @@ def selection_sort(array):
 
 
 ass1 = [1001, 1030, 1050, 1020, 300, 1080, 1100]
-selection_sort(ass1)
+
+
+# selection_sort(ass1)
 
 
 # Assignment 2
 def bubble_sort_three_passes(arr):
-    for pass_num in range(len(arr) - 1, 0, -1):
-        for i in range(0, 3):
-            if arr[i] > arr[i + 1]:
+    for pass_num in range(0, 3):
+        # print(arr)
+        for i in range(len(arr) - 1, 0, -1):
+            if arr[i] < arr[i - 1]:
                 temp = arr[i]
-                arr[i] = arr[i + 1]
-                arr[i + 1] = temp
+                arr[i] = arr[i - 1]
+                arr[i - 1] = temp
     return arr
 
 
 ass2 = [210, 15, 111, 90, 45, 120, 150, 200, 100, 140]
-print(bubble_sort_three_passes(ass2))
+
+
+# print(bubble_sort_three_passes(ass2))
 
 
 # Assignment 3
@@ -53,10 +58,11 @@ def insertion_sort(arr):
 
 def sort_and_rem_dup(arrr):
     arr = insertion_sort(arrr)
-    print(arr)
+    # print(arr)
     new_list = []
     for i in arr:
-        if len(new_list) == 0 or (arr[i] != new_list[-1]):
+        # print(i)
+        if len(new_list) == 0 or (i != new_list[-1]):
             new_list.append(i)
     return new_list
 
@@ -67,16 +73,54 @@ print(new_list)
 
 
 # Assignment 4
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
+    def peek(self):
+        return self.items[len(self.items)]
+
+    def size(self):
+        return len(self.items)
+
+
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
+
 def check_palindrome(word):
-    for i in range(0, (len(word) // 2)):  # this code checks half the amount of letters the code beneathe checks
-        if word[i] != word[-1 - i]:  # marginally faster
-            return 'is not palindrome'
-    return 'is Palindrome'
+    s = Stack()
+    q = Queue()
 
-    # if word == word[::-1]:
-    # return 'is palindrome'
-    # else:
-    # return 'is not palindrom'
+    for i in word:
+        s.push(i)
+        q.enqueue(i)
 
+    while not q.is_empty():
+        if s.pop() != q.dequeue():
+            return 'not palindrome'
+    return 'is palindrome'
 
-print(check_palindrome('saippuakivikauppias'))
+print(check_palindrome('oiguawdoiuygladw'))
