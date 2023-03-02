@@ -31,7 +31,7 @@ employee1.print_it()
 
 
 # Assignment 3
-def find_smallest(arr):
+def find_smallest_ass3(arr):
     smallest = arr[0]
     smallest_index = 0
     for i in range(1, len(arr)):
@@ -44,7 +44,7 @@ def find_smallest(arr):
 def selection_sort(arr):
     new_arr = []
     for i in range(len(arr)):
-        smallest = find_smallest(arr)
+        smallest = find_smallest_ass3(arr)
         new_arr.append(arr.pop(smallest))
     return new_arr
 
@@ -79,16 +79,20 @@ def most_frequent_integer(liste):
 result4 = most_frequent_integer(test)
 print(result4)
 
+
 # Assignment 5
-def magic_function(string, prefix=''):
+def magic_function(string: str) -> list[str]:
     if len(string) <= 1:
-        return string
+        return [string]
+    p = []
+    for i in range(len(string)):
+        substr_permutations = magic_function(string[:i] + string[i + 1:])
+        p = p + [string[i] + perm for perm in substr_permutations ]
+        # for perm in substr_permutations:
+        #     p.append(string[i] + perm)
+    return p
 
 
-    for i in string:
-        print(i)
-        # print(v)
-    return
 magic_function("abcd")
 result5 = magic_function("abcd")
 print(result5)
