@@ -39,8 +39,7 @@ def bubble_sort_three_passes(arr):
 
 ass2 = [210, 15, 111, 90, 45, 120, 150, 200, 100, 140]
 
-
-# print(bubble_sort_three_passes(ass2))
+print(bubble_sort_three_passes(ass2))
 
 
 # Assignment 3
@@ -123,4 +122,4 @@ def check_palindrome(word):
             return 'not palindrome'
     return 'is palindrome'
 
-print(check_palindrome('oiguawdoiuygladw'))
+# print(check_palindrome('oiguawdoiuygladw'))
