@@ -69,8 +69,10 @@ candidate_solution1 = ['d3', 'c1', 'e5', 'b4', 'a2']
 candidate_solution2 = ['e4', 'a1', 'c5', 'd2', 'b1']
 result1 = is_solution(candidate_solution1)
 result2 = is_solution(candidate_solution2)
-print("Candidate Solution 1:", result1)
-print("Candidate Solution 2:", result2)
+
+
+# print("Candidate Solution 1:", result1)
+# print("Candidate Solution 2:", result2)
 
 
 # Assignment 3
@@ -86,11 +88,32 @@ class Graph:
     def print_graph(self):
         print(self.graph)
 
-    def find_cycle(self, node):
-        return
+    def find_cycle(self, node, current_path=None):
+        if current_path is None:
+            current_path = []
+
+        for neighbour in self.graph.get(node, []):
+            # print(neighbour)
+            print(neighbour, current_path)
+            if neighbour not in current_path:
+                if self.find_cycle(neighbour, current_path + [neighbour]):
+                    print(neighbour, current_path)
+                    return True
+
+            else:
+                return True
+
+        return False
+
+    def find_negative(self, numbers):
+        for i in numbers:
+            if i < 0:
+                return True
+        return False
 
 
 my_graph = Graph()
+# print(my_graph.find_negative([1, -1]))
 my_graph.add_edge('A', 'B')
 my_graph.add_edge('B', 'D')
 my_graph.add_edge('C', 'B')
@@ -101,6 +124,9 @@ my_graph.add_edge('E', 'C')
 my_graph.add_edge('E', 'G')
 my_graph.add_edge('F', 'H')
 my_graph.add_edge('G', 'I')
+result = my_graph.find_cycle('A')
+# my_graph.print_graph()
+print(result)
 
 
 # my_graph.print_graph()
@@ -138,7 +164,7 @@ graph.add_edge('b', 'c')
 graph.add_edge('b', 'd')
 graph.add_edge('c', 'd')
 graph.add_edge('d', 'e')
-graph.print_graph()
+# graph.print_graph()
 graph.remove_edges('b')
-print('after removal:')
-graph.print_graph()
+# print('after removal:')
+# graph.print_graph()
