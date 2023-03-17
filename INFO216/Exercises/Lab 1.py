@@ -3,6 +3,7 @@ from rdflib.namespace import FOAF
 import requests
 import urllib
 from urllib import parse
+import owlrl
 
 g = Graph()
 bn = BNode()
@@ -78,6 +79,10 @@ g.add((cohen, custom.plead_guilty, custom.lying_to_congress))
 g.add((flynn, custom.adviser, donald))
 g.add((flynn, custom.plead_guilty, custom.lying_to_fbi))
 g.add((flynn, custom.negotiate, custom.plea_deal))
+
+
+# owl stuff, lab 17.03
+
 
 # For every triple in G, if G == plead_guilty, print triple
 for subj, pred, obj in g:

@@ -87,7 +87,7 @@ def magic_function(string: str) -> list[str]:
     p = []
     for i in range(len(string)):
         substr_permutations = magic_function(string[:i] + string[i + 1:])
-        p = p + [string[i] + perm for perm in substr_permutations ]
+        p = p + [string[i] + perm for perm in substr_permutations]
         # for perm in substr_permutations:
         #     p.append(string[i] + perm)
     return p
