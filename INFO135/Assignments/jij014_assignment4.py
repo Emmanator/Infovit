@@ -88,16 +88,16 @@ class Graph:
     def print_graph(self):
         print(self.graph)
 
-    def find_cycle(self, node, current_path=None):
+    def find_cycle_finder(self, node, current_path=None):
         if current_path is None:
             current_path = []
 
         for neighbour in self.graph.get(node, []):
             # print(neighbour)
-            print(neighbour, current_path)
+            # print(neighbour, current_path)
             if neighbour not in current_path:
-                if self.find_cycle(neighbour, current_path + [neighbour]):
-                    print(neighbour, current_path)
+                if self.find_cycle_finder(neighbour, current_path + [neighbour]):
+                    # print(neighbour, current_path)
                     return True
 
             else:
@@ -105,15 +105,14 @@ class Graph:
 
         return False
 
-    def find_negative(self, numbers):
-        for i in numbers:
-            if i < 0:
-                return True
-        return False
+    def find_cycle(self, node):
+        if self.find_cycle_finder(node):
+            return 'Cycle found!'
+        else:
+            return 'No cycle found from this node'
 
 
 my_graph = Graph()
-# print(my_graph.find_negative([1, -1]))
 my_graph.add_edge('A', 'B')
 my_graph.add_edge('B', 'D')
 my_graph.add_edge('C', 'B')
