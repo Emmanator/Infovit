@@ -27,8 +27,6 @@ g.add((ex.person_under_investigation, RDFS.subClassOf, FOAF.Person))
 g.add((ex.charged_with, RDFS.domain, ex.Person_Under_Investigation))
 g.add((ex.charged_with, RDFS.range, ex.Offense))
 
-
-
 g.add((ex.Rick_Gates, ex.charged_with, ex.money_laundering))
 g.add((ex.Rick_Gates, ex.charged_with, ex.tax_evasion))
 
