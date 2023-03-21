@@ -22,15 +22,19 @@ ex = Namespace('http://example.org')
 g.bind('ex', ex)
 g.bind('foaf', FOAF)
 
-g.add((ex.Rick_Gates, RDFS.subClassOf, FOAF.Person))
-g.add((ex.charged_with, RDFS.domain, FOAF.Person))
+# g.add((ex.Rick_Gates, RDF.type, ex.under_investigation))
+# g.add((ex.under_investigation, RDFS.subClassOf, FOAF.Person))
+g.add((ex.under_investigation, RDFS.domain, FOAF.Person))
+g.add((ex.charged_with, RDFS.subPropertyOf, ex.under_investigation))
+g.add((ex.offense, RDFS.subPropertyOf, ex.charged_with))
 
 g.add((ex.Rick_Gates, ex.charged_with, ex.money_laundering))
 g.add((ex.Rick_Gates, ex.charged_with, ex.tax_evasion))
 
-g.add((ex.charged_with, RDFS.subPropertyOf, ex.under_investigation))
-g.add((ex.money_laundering, RDFS.subPropertyOf, ex.offence))
-g.add((ex.tax_evasion, RDFS.subPropertyOf, ex.offence))
+
+# g.add((ex.charged_with, RDFS.subPropertyOf, ex.offense))
+# g.add((ex.money_laundering, RDF.type, ex.offence))
+# g.add((ex.tax_evasion, RDF.type, ex.offence))
 
 RDF_type = """
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
