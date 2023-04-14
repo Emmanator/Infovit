@@ -1,5 +1,5 @@
 import owlrl
-from rdflib import Graph, Literal, RDF, Namespace, BNode, RDFS, XSD
+from rdflib import Graph, Literal, RDF, Namespace, BNode, RDFS, XSD, OWL
 from rdflib.namespace import FOAF
 import requests
 import urllib

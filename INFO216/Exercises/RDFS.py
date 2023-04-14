@@ -16,22 +16,17 @@ endpoint = f'{SERVER}namespace/{NAMESPACE}/sparql'
 client = SPARQLWrapper(endpoint)
 client.setReturnFormat('json')
 
-g = Graph()
 ex = Namespace('http://example.org')
 
 g.bind('ex', ex)
 g.bind('foaf', FOAF)
 
-
 g.add((ex.person_under_investigation, RDFS.subClassOf, FOAF.Person))
 g.add((ex.charged_with, RDFS.domain, ex.Person_Under_Investigation))
 g.add((ex.charged_with, RDFS.range, ex.Offense))
 
-
-
 g.add((ex.Rick_Gates, ex.charged_with, ex.money_laundering))
 g.add((ex.Rick_Gates, ex.charged_with, ex.tax_evasion))
-
 
 RDF_type = """
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

@@ -71,8 +71,8 @@ result1 = is_solution(candidate_solution1)
 result2 = is_solution(candidate_solution2)
 
 
-# print("Candidate Solution 1:", result1)
-# print("Candidate Solution 2:", result2)
+print("Candidate Solution 1:", result1)
+print("Candidate Solution 2:", result2)
 
 
 # Assignment 3
