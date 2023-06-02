@@ -39,15 +39,30 @@ class Employee:
 
 # Binary Search
 # Exercise 1
-# a) Can perform Binary Search on 1, 3, 4, 5
+# a) Can perform Binary Search on 1, 3, 5
 # b) O(log n)
 
 
 # Exercise 2
+import math
+
 n = [1, 2, 3]
 
-def binary_search_big(n: list, x):
-    mid_point =
+# O(log n)
+def binary_search_big(my_list: list):
+    return math.ceil(math.log(len(my_list), 2))
+
+# O(n)
+def simple_search_big_o(my_list: list):
+    return len(my_list)
+
+
+test_list = [90, 123, 134, 123, 128736, 192783182, 123897, 12378, 90, 123, 134, 123, 128736, 192783182, 123897, 12378]
+print(binary_search_big(test_list))
+print(simple_search_big_o(test_list))
+
+# Extra task 1
+
 
 # Extra task 2
 text = 'haha ball funny cum in ass yesyes'

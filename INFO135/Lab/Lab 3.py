@@ -1,5 +1,5 @@
 # Exercise 1
-def selection_sort_one_pass(array):
+def selection_sort(array):
     length = len(array)
     passes = 0
     print(f'#{passes}: {array}')
@@ -18,7 +18,7 @@ def selection_sort_one_pass(array):
 
 
 test = [90, 78, 56, 1239, 1, 1289, 123, 6363, 7127]
-selection_sort_one_pass(test)
+selection_sort(test)
 # Exercise 2
 from large_list import liste
 from operator import itemgetter
@@ -50,8 +50,8 @@ def quick_sort(arr):
     return arr
 
 
-# print(llist_sort(sort(a)))
-# print(llist_sort(quick_sort(a)))
+print(llist_sort(sort(a)))
+print(llist_sort(quick_sort(a)))
 
 
 # Exercise 3
@@ -66,4 +66,4 @@ def find_anagram(s1: str, s2: str):
         return 'cry'
 
 
-# print(find_anagram('The Detectives', 'Detect Thieves'))
+print(find_anagram('The Detectives', 'Detect Thieves'))

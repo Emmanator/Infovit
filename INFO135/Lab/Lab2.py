@@ -23,10 +23,34 @@ class Linkedlist:
         new_node = Node(new_data)
         if self.head is None:
             self.head = new_node
+            return
+
         last_node = self.head
+
         while last_node.next:
             last_node = last_node.next
         last_node.next = new_node
 
-a = Linkedlist
-a.add(a, 'test')
+    def add_at_beginning(self, new_data):
+        new_node = Node(new_data)
+        if self.head is None:
+            self.head = new_node
+            return
+
+        new_node.next = self.head
+        self.head = new_node
+        # print(self.head)
+
+    def print_list(self):
+        temp = self.head
+        while temp:
+            print(f'{temp.data} ', end='')
+            temp = temp.next
+        print("")
+
+my_list = Linkedlist()
+my_list.add_at_beginning(4)
+my_list.add_at_beginning(3)
+my_list.add_at_beginning(2)
+my_list.add_at_beginning(1)
+my_list.print_list()

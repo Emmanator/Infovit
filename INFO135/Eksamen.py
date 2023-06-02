@@ -1,8 +1,54 @@
-# Insertion Sort
 from abc import ABC, abstractmethod
 from multiprocessing import Process
 
 
+# Quick Sort
+def partition(arr, low: int, high: int):
+    pivot = arr[high]
+    i = low - 1
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i = i + 1
+
+            (arr[i], arr[j]) = (arr[j], arr[i])
+    (arr[i + 1], arr[high]) = (arr[high], arr[i + 1])
+
+    return i + 1
+
+
+def quick_sort(arr: list, low: int, high: int):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+
+
+quick_sort_list = [30, 40, 50, 20, 1, 2, 3]
+print(quick_sort_list)
+size = len(quick_sort_list)
+quick_sort(quick_sort_list, 0, size - 1)
+print(quick_sort_list)
+
+
+# Bubble sort
+def bubble_sort(arr):
+    for i in range(len(arr) - 1, 0, -1):
+        for j in range(i):
+            if arr[j] > arr[j + 1]:
+                # print(i)
+                temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+
+
+shortlist = [30, 40, 50, 20, 1, 2, 3]
+bubble_sort(shortlist)
+print(shortlist)
+
+
+# Insertion Sort
 def insert_sort(input_list: list):
     n = len(input_list)
     for i in range(1, n):
