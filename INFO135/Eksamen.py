@@ -1,3 +1,4 @@
+import random
 from abc import ABC, abstractmethod
 from multiprocessing import Process
 
@@ -22,7 +23,6 @@ def quick_sort(arr: list, low: int, high: int):
         pi = partition(arr, low, high)
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
-
 
 
 quick_sort_list = [30, 40, 50, 20, 1, 2, 3]
@@ -206,21 +206,7 @@ class Graph:
             for neighbour in self.graph[nodes]:
                 print(nodes, neighbour)
 
-    # Example of Remove edges
-    def remove_edges(self, node):
-        if node in self.graph:
-            del self.graph[node]
-        for i in self.graph:
-            if node in self.graph[i]:
-                self.graph[i].remove(node)
 
-    # Another example
-    def remove_edges2(self, node):
-        del self.graph[node]
-        for nodes in self.graph:
-            p = len(self.graph[nodes])
-            if self.graph[nodes][p - 1] == node:
-                del self.graph[nodes][p - 1]
 
 
 # Process start
@@ -228,10 +214,10 @@ def my_function():
     pass
 
 
-my_process = Process(target=my_function())
-if __name__ == "__main__":
-    my_process.start()
-    my_process.join()
+# my_process = Process(target=my_function())
+# if __name__ == "__main__":
+#    my_process.start()
+#    my_process.join()
 
 # Some shitty code
 stack1 = Stack()
@@ -257,4 +243,187 @@ def func2(input):
     return total
 
 
-print(func2(func1(stack1)))
+# print(func2(func1(stack1)))
+
+
+memo = dict()
+
+
+def fact_func2(n):
+    if n < 2:
+        return 1
+
+    if n not in memo:
+        print(f"Computing factorial of {n}")
+        memo[n] = n * fact_func2(n - 1)
+
+    return memo[n]
+
+
+# for i in range(1000):
+# print(fact_func2(i))
+
+
+class Graph:
+    graph = dict()
+    searched = []
+
+    def add_edge(self, node, neighbour):
+        if node not in self.graph:
+            self.graph[node] = [neighbour]
+        else:
+            self.graph[node].append(neighbour)
+
+    def print_graph(self):
+        print(self.graph)
+
+    def print_edges(self):
+        for nodes in self.graph:
+            for neighbour in self.graph[nodes]:
+                print("(", nodes, ",", neighbour, ")")
+
+    def remove_edges_but_scuffed(self, node):
+        del self.graph[node]
+
+        for nodes in self.graph:
+            p = len(self.graph[nodes])
+            if self.graph[nodes][p - 1] == node:
+                del self.graph[nodes][p - 1]
+
+    def remove_edges(self, node):
+        for i in self.graph:
+            if node in self.graph[i]:
+                self.graph[i].remove(node)
+
+        if node in self.graph:
+            del self.graph[node]
+
+
+
+
+
+graph = Graph()
+graph.add_edge('a', 'b')
+graph.add_edge('a', 'c')
+graph.add_edge('b', 'c')
+graph.add_edge('b', 'd')
+graph.add_edge('c', 'd')
+graph.add_edge('d', 'e')
+graph.print_graph()
+graph.remove_edges('e')
+print('after removal:')
+graph.print_graph()
+
+
+class HashTable:
+    def __init__(self, table_size, prime_num):
+        self.table_size = table_size
+        self.prime_num = prime_num
+        self.list = [None] * table_size
+        self.scale = random.randint(1, 1000)
+
+    def hash_function(self, key):
+        return (key * self.scale) % self.prime_num % self.table_size
+
+    def insert(self, key):
+        hash_value = self.hash_function(key)
+        self.list[hash_value] = key
+
+    def lookup(self, key):
+        hash_value = self.hash_function(key)
+        return key == self.list[hash_value]
+
+
+table_size = 50
+prime_num = 1777
+my_table = HashTable(table_size, prime_num)
+my_table.insert(55)
+my_table.insert(71)
+my_table.insert(22)
+my_table.insert(63)
+my_table.insert(10)
+print(my_table.lookup(10))
+print(my_table.lookup(99))
+
+
+class Engine:
+    def __init__(self):
+        self.fuel = 10000
+        self.power = 0
+
+    def launch(self):
+        print("Vroom Vroom")
+        self.fuel -= 20
+        self.power = 90
+
+    def fuel_check(self):
+        print("The fuel is:", self.fuel)
+
+    def landing(self):
+        for i in range(10, -1, -1):
+            self.power = i
+            print("Landing power level:", self.power)
+
+
+class Communication:
+    def __init__(self):
+        self.marvin = False
+
+    def send_msg(self, message):
+        print("Sending your messeage", message)
+
+    def call_home(self, nr):
+        print("Calling the number...")
+
+
+class Rocket:
+
+    def __init__(self):
+        self.steering = True
+        self.engine = Engine()
+        self.comms = Communication()
+
+    def launch(self):
+        print('Start countdown for launch ...')
+        self.engine.launch()
+
+    def call_home(self, nr):
+        self.comms.call_home(nr)
+
+
+class Graph:
+    graph = dict()
+
+    def breadth_first_search(self, node):
+        searched = [node]
+        search_queue = [node]
+        while search_queue:
+            node = search_queue.pop(0)
+            print("[", node, end=" ], ")
+            if node in self.graph:
+                for neighbour in self.graph[node]:
+                    if neighbour not in searched:
+                        searched.append(neighbour)
+                        search_queue.append(neighbour)
+
+    def add_edge(self, node, neighbour):
+        if node not in self.graph:
+            self.graph[node] = [neighbour]
+        else:
+            self.graph[node].append(neighbour)
+
+
+def create_graph():
+    g = Graph()
+    g.add_edge('A', 'B')
+    g.add_edge('A', 'C')
+    g.add_edge('A', 'D')
+    g.add_edge('B', 'E')
+    g.add_edge('B', 'C')
+    g.add_edge('C', 'E')
+    g.add_edge('C', 'F')
+    g.add_edge('C', 'D')
+    g.add_edge('D', 'F')
+    g.breadth_first_search('A')
+
+create_graph()

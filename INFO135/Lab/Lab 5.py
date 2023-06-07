@@ -8,7 +8,6 @@ class MiniBank:
 
     def sort_bills(self):
         self.bills = sorted(self.bills)
-        return sorted(self.bills)
 
 
 jeff = MiniBank('jeff')
@@ -37,7 +36,24 @@ for i in range(n):
         # print(f'{j} ', end='')
         if i == j or ((n - j - 1) == i):
             # print(f'if: {i:02d} {j:02d}, ({n:02d} - {j:02d} - 1 =) {(n - j - 1):02d}')
-            print('*')
+            print('*', end='')
         else:
-            print(' ')
+            print(' ', end='')
+    print('')
 
+
+def a_space_classic(n):
+    z = n - 1
+    x = 1
+    for i in range(0, n):
+        for i in range(0, z):
+            print(' ', end='')
+        for i in range(0, x):
+            print('+', end='')
+        for i in range(0, z):
+            print(' ', end='')
+        x = x + 2
+        z = z - 1
+        print()
+
+a_space_classic(3)

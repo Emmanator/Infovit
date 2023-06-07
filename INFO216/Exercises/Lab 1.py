@@ -34,7 +34,7 @@ g.add((trumpAddr, FOAF.name, Literal('The White House, 1600 Pennsylvania Ave., N
 g.add((trumpAddr, FOAF.name, Literal('Mar-a-Lago Club, 1100 S Ocean Blvd, Palm Beach, FL 33480, United States')))
 g.add((custom.Melania, RDF.type, FOAF.Person))
 g.add((custom.Melania, FOAF.name, Literal("Melania Trump")))
-g.add((donald, custom.Address, trumpAddr))
+g.add((donald, custom.Address,  trumpAddr))
 g.add((custom.Melania, custom.Adress, trumpAddr))
 
 # People involved in the mueller investigation
