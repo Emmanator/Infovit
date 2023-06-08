@@ -1,17 +1,24 @@
+# Standard imports at the start of an rdf graph in rdflib
 from rdflib import RDF, RDFS, FOAF, OWL, Namespace, Graph, XSD, Literal
 
+# to make a graph
 g = Graph()
 
+# Graph needs a namespace
 ex = Namespace('http://ex.org#')
 
+# Assigns an OWL class to Agennt a Publication
 g.add((ex.Agent, RDF.type, OWL.Class))
 g.add((ex.Publication, RDF.type, OWL.Class))
 
+# Makes these classes subclasses of agent or publication
 g.add((ex.Author, RDFS.subClassOf, ex.Agent))
 g.add((ex.Organization, RDFS.subClassOf, ex.Agent))
 g.add((ex.Country, RDFS.subClassOf, ex.Agent))
 g.add((ex.Paper, RDFS.subClassOf, ex.Publication))
 
+# This section assigns properties into the graph
+# Every property needs a domain, and range.
 g.add((ex.name, RDFS.domain, ex.Agent))
 g.add((ex.name, RDFS.range, XSD.string))
 
@@ -36,6 +43,7 @@ g.add((ex.publisher, RDFS.range, ex.Organization))
 g.add((ex.year, RDFS.domain, ex.Publication))
 g.add((ex.year, RDFS.range, XSD.int))
 
+# This is how you'd add a paper into this graph
 g.add((ex.the_semantic_web, RDF.type, ex.Paper))
 g.add((ex.the_semantic_web, ex.title, Literal("The Semantic Web")))
 g.add((ex.the_semantic_web, ex.author, ex.Tim_Berners_Lee))
@@ -44,51 +52,73 @@ g.add((ex.the_semantic_web, ex.publication, ex.Scientific_American))
 g.add((ex.the_semantic_web, ex.publisher, ex.Springer_Nature))
 g.add((ex.the_semantic_web, ex.year, Literal(2001)))
 
+# This is how you'd add an author into the graph
 g.add((ex.Tim_Berners_Lee, RDF.type, ex.Author))
 g.add((ex.Tim_Berners_Lee, ex.name, Literal("Tim Berners Lee")))
 g.add((ex.Tim_Berners_Lee, ex.affiliation, ex.MIT))
 g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 
-# :Organization rdfs:subClassOf :Agent .
+# Restrictions
+#
+# Organization is a kind of Agent
+# :Organization rdfs:subClassOf :Agent
+
+# The object in an affiliation-triple is an Organization.
 # :affiliation rdfs:range :Organization
 # :affiliation rdfs:domain :Author
+
+# A paper can only be published in 1 Publication
 # :publication owl:cardinality 1
+
+# A Paper can only have one year
 # :publication rdf:type owl:FunctionalProperty
 # :year owl:maxCardinality 1
+
+# Paper cannot not be its own publication
 # :publication rdf:type owl:IrreflexiveProperty
 # :publication rdf:type owl:TransitiveProperty
+
+# Two authors cannot have the same name
 # :name rdf:type owl:InverseFunctionalProperty
+
+# Author is not an Organization
 # :Author owl:disjointWith :Organization
+
+# title is a string
 # :title rdfs:range xsd:string
 #
+# Paper becomes a subclass of an owl:Restriction, that says minCardinality has to be 1 for author.
 # :Paper rdfs:subClassOf [ rdf:type owl:Restriction ;
 #                          owl:minCardinality "1" ;
 #                          owl:onProperty :author
 #                        ] .
-#
+# owl:restriction on :Paper that says there has to be 1 title
 # :Paper rdfs:subClassOf [ rdf:type owl:Restriction ;
 #                          owl:cardinality "1" ;
 #                          owl:onProperty :title
 #                        ] .
-#
+# owl:DataRange restriction that says a year has to be between 1900 and 2050
 # :year rdfs:range [ rdf:type owl:DataRange ;
 #                    owl:minInclusive "1900" ;
 #                    owl:maxInclusive "2050"
 #                  ] .
 
+# A disjointwith B, A disjoinwith C, B disjoint with C
 # :Author owl:disjointWith :Organization
 # :Author owl:disjointWith :Country
 # :Organization owl:disjointWith :Country
-#
-# :Publisher owl:oneOf (:CM :IEEE_CS :Springer_Nature :IGI_Global)
-#
 
+# Says Publisher has to be one of these publishers.
+# :Publisher owl:oneOf (:CM :IEEE_CS :Springer_Nature :IGI_Global)
+
+# Selects titles of a paper
 # SELECT ?title
 # WHERE {
 # ?paper rdf:type :Paper ;
 #   :title ?title .
 # }
 
+# Selects distinct names of Organizations
 # SELECT DISTINCT ?name
 # WHERE {
 #   ?p rdf:type :Publication ;
@@ -96,6 +126,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # }
 # ORDER BY ?name
 
+# Selects name of author and title of Papers they have written
 # SELECT ?name ?title
 # WHERE {
 #   ?author ^:name / ^:author / :title ?title
@@ -106,6 +137,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #   ?a :name ?name
 # }
 
+# Returns how many publications from each country
 # SELECT ?c (COUNT(?p) AS ?number)
 # WHERE {
 # ?p rdf:type :Paper ;
@@ -113,6 +145,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # }
 # GROUP BY ?c
 
+# Lists authors and the number of publications
 # SELECT ?a (COUNT(?p) AS ?number)
 # WHERE {
 # ?p rdf:type :Paper ;
@@ -121,6 +154,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # GROUP BY ?a
 # ORDER BY ?number DESC
 
+# Lists authors and the year of their first and last published work
 # SELECT ?a (MIN(?y) as ?min) (MAX(?y) as ?max)
 # WHERE {
 #   ?p rdf:type :Paper ;
@@ -129,6 +163,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # }
 # GROUP BY ?a
 
+# Return the name of Authors, excluding ones that have affiliation Germany
 # SELECT ?name
 # WHERE {
 #   ?a rdf:type :Author ;
@@ -138,6 +173,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #   }
 # }
 
+# This asks if James Hendler is an author of more than 1 paper by getting p1 and p2 and comparing
 # ASK {
 #   ?a rdf:type :Author ;
 #       :name "James Hendler" .
@@ -146,6 +182,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #   FILTER (?p1 != ?p2)
 # }
 
+# Makes a new consutrction in the graph of all authors have that worked with Christian_Bizer
 # CONSTRUCT{
 #   ?a rdf:type :Author ;
 #       :affiliation ?affili ;
@@ -161,6 +198,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :author ?a
 # }
 
+# Creates a new part of the graph same as above but including THEIR Papers, affiliations, and countries
 # CONSTRUCT {
 #   ?a rdf:type :Author ;
 #       :affiliation ?affili ;
@@ -183,6 +221,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :author ?a
 # }
 
+# Says that orgs that have an affiliation with Author are a type of institution
 # INSERT {
 #   ?org rdf:type :Institution
 # } WHERE {
@@ -190,6 +229,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :affiliation ?org
 # }
 
+# If an Author has a country, then that Organization is located in that same country
 # INSERT {
 #   ?org :locatedIn ?country
 # } WHERE {
@@ -198,6 +238,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :affiliation ?org
 # }
 
+# Paper is producedBy the Organization the author is affiliated with
 # INSERT {
 #   ?p :producedBy ?org
 # } WHERE {
@@ -206,6 +247,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       ^:author ?p
 # }
 
+# This says a paper is produced in the country that the author is locatedin
 # INSERT {
 #   ?p :producedIn ?c
 # } WHERE {
@@ -213,12 +255,14 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :author / :affiliation / :locatedIn ?c
 # }
 
+# This just deletes all country connections between authors and countries
 # DELETE {
 #   ?a :country ?c
 # } WHERE {
 #   ?a :country ?c
 # }
 
+# This says to delete the most recent year of a Paper if it has multiple
 # DELETE {
 #   ?p :year ?y2
 # } WHERE {
@@ -228,6 +272,8 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #   FILTER(?y1 < ?y2)
 # }
 
+
+# SHACL stuff, nightmarenightmarenightmare
 #ex:LabTasks_Shape
 #    a sh:NodeShape ;
 #    sh:targetClass ex:PersonUnderInvestigation ;
