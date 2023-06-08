@@ -86,7 +86,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # SELECT ?title
 # WHERE {
 # ?paper rdf:type :Paper ;
-    # :title ?title .
+#   :title ?title .
 # }
 
 # SELECT DISTINCT ?name
@@ -99,6 +99,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # SELECT ?name ?title
 # WHERE {
 #   ?author ^:name / ^:author / :title ?title
+#
 #   ?p :author ?a .
 #   ?p rdf:type :Paper .
 #   ?p :title ?title .
@@ -223,6 +224,37 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 # } WHERE {
 #   ?p rdf:type :Paper ;
 #       :year ?y1 ;
-#       :year ?y2 .
+#       :year ?y2 
 #   FILTER(?y1 < ?y2)
 # }
+
+#ex:LabTasks_Shape
+#    a sh:NodeShape ;
+#    sh:targetClass ex:PersonUnderInvestigation ;
+#    sh:property [
+#        sh:path foaf:name ;
+#        sh:minCount 1 ; #Every person under investigation has exactly one name.
+#        sh:maxCount 1 ; #Every person under investigation has exactly one name.
+#        sh:datatype rdf:langString ; #All person names must be language-tagged
+#    ] ;
+#    sh:property [
+#        sh:path ex:chargedWith ;
+#        sh:nodeKind sh:IRI ; #The object of a charged with property must be a URI.
+#        sh:class ex:Offense ; #The object of a charged with property must be an offense.
+#    ] .
+
+# --- If you have more time tasks ---
+# ex:MoreTime_Shape rdf:type sh:NodeShape;
+#    sh:targetClass ex:Indictment;
+
+# The only allowed values for ex:american are true, false or unknown.
+#    sh:property [
+#        sh:path ex:american;
+#        sh:pattern "(true|false|unknown)" ;
+#    ] ;
+#
+#    # The value of a property that counts days must be an integer.
+#    sh:property [
+#        sh:path ex:indictment_days;
+#        sh:datatype xsd:integer;
+#    ] ;
