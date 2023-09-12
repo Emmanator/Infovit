@@ -7,7 +7,7 @@ g = Graph()
 # Graph needs a namespace
 ex = Namespace('http://ex.org#')
 
-# Assigns an OWL class to Agennt a Publication
+# Assigns an OWL class to Agent a Publication
 g.add((ex.Agent, RDF.type, OWL.Class))
 g.add((ex.Publication, RDF.type, OWL.Class))
 
@@ -59,7 +59,6 @@ g.add((ex.Tim_Berners_Lee, ex.affiliation, ex.MIT))
 g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 
 # Restrictions
-#
 # Organization is a kind of Agent
 # :Organization rdfs:subClassOf :Agent
 
@@ -86,7 +85,8 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 
 # title is a string
 # :title rdfs:range xsd:string
-#
+
+
 # Paper becomes a subclass of an owl:Restriction, that says minCardinality has to be 1 for author.
 # :Paper rdfs:subClassOf [ rdf:type owl:Restriction ;
 #                          owl:minCardinality "1" ;
@@ -182,7 +182,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #   FILTER (?p1 != ?p2)
 # }
 
-# Makes a new consutrction in the graph of all authors have that worked with Christian_Bizer
+# Makes a new construction in the graph of all authors have that worked with Christian_Bizer
 # CONSTRUCT{
 #   ?a rdf:type :Author ;
 #       :affiliation ?affili ;
@@ -198,7 +198,7 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 #       :author ?a
 # }
 
-# Creates a new part of the graph same as above but including THEIR Papers, affiliations, and countries
+# Creates a new part of the graph same as above but including THEIR Papers, affiliations, and countries Related to Christian Bizer
 # CONSTRUCT {
 #   ?a rdf:type :Author ;
 #       :affiliation ?affili ;
@@ -274,19 +274,22 @@ g.add((ex.Tim_Berners_Lee, ex.country, ex.United_States))
 
 
 # SHACL stuff, nightmarenightmarenightmare
-#ex:LabTasks_Shape
+# SHACL seems similar to RDFLIB tbh, you give it a nodeshape, then a targetClass, then a property.
+#:LabTasks_Shape
 #    a sh:NodeShape ;
 #    sh:targetClass ex:PersonUnderInvestigation ;
 #    sh:property [
 #        sh:path foaf:name ;
+#        # Property is where things happen
 #        sh:minCount 1 ; #Every person under investigation has exactly one name.
 #        sh:maxCount 1 ; #Every person under investigation has exactly one name.
 #        sh:datatype rdf:langString ; #All person names must be language-tagged
 #    ] ;
-#    sh:property [
-#        sh:path ex:chargedWith ;
-#        sh:nodeKind sh:IRI ; #The object of a charged with property must be a URI.
-#        sh:class ex:Offense ; #The object of a charged with property must be an offense.
+#    # A SHACL string can have multiple properties targeting one class
+#    :property [
+#        :path :chargedWith ;
+#        :nodeKind :URI ; #The object of a charged with property must be a URI.
+#        :class :Offense ; #The object of a charged with property must be an offense.
 #    ] .
 
 # --- If you have more time tasks ---
