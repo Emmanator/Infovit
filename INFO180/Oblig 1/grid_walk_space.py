@@ -63,7 +63,7 @@ class GridWalkSpace:
             # get the next path from the frontier
             last_node = next_path.node_list[-1]
             # get the last node of this path
-            # print(next_path)
+            # print(f'last node i: {last_node.i} last node j: {last_node.j}')
             if is_goal(last_node.i, last_node.j):
                 # if we have a solution
 
@@ -153,14 +153,14 @@ class GridWalkSpace:
 
 if __name__ == '__main__':
     print("Breadth-first")
-    #BFS = GridWalkSpace(Queue())
-    #BFS.solve()
+    BFS = GridWalkSpace(Queue())
+    BFS.solve()
     print("DFS")
-    #DSF = GridWalkSpace(LifoQueue())
-    #DSF.solve()
-    #print("Lowest-Cost-Search")
-    #LCS = GridWalkSpace(PriorityQueue())
-    #LCS.solve()
+    DSF = GridWalkSpace(LifoQueue())
+    DSF.solve()
+    print("Lowest-Cost-Search")
+    LCS = GridWalkSpace(PriorityQueue())
+    LCS.solve()
     print("Heuristic")
     Heuristic1 = GridWalkSpace(PriorityQueue(), ZeroH())
     Heuristic1.solve()

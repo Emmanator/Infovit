@@ -21,7 +21,7 @@ class EuclidH(Heuristic):
         self.target = GridWalkNode(0, 0)
 
     def h(self, node):
-        return math.sqrt(((SIZE - node.i) ** 2) + (SIZE - node.j) ** 2)
+        return math.sqrt((((SIZE - 1) - node.i) ** 2) + ((SIZE - 1) - node.j) ** 2)
 
 
 # 5)

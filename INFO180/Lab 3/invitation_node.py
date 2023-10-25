@@ -22,9 +22,17 @@ class InvitationNode:
         self.anne = Guest("Anne")
         self.ola = Guest("Ola")
         self.jan = Guest("Jan")
+        self.ole = Guest("Ole")
+        self.emma = Guest("Emma")
+        self.june = Guest("June")
+        self.emil = Guest("Emil")
+        self.egil = Guest("Egil")
+        self.magne = Guest("Magne")
+        self.martin = Guest("Martin")
 
         # You also need to make a list of all these potential guests
-        self.assignment = [self.anne, self.ola, self.jan]
+        self.assignment = [self.anne, self.ola, self.jan, self.ole, self.emma, self.june, self.emil, self.egil,
+                           self.magne, self.martin]
 
     def get_neighbours(self):
         '''
@@ -47,7 +55,7 @@ class InvitationNode:
 
         return result
 
-    def copy_and_add_assignment(self,invite):
+    def copy_and_add_assignment(self, invite):
         '''
         Copys a node and adds one invitation status to one potential guest
         :param invite: the invitation status to set
@@ -94,9 +102,18 @@ class InvitationNode:
         if self.relevant_constraint([self.anne, self.jan]):
             val = val and (self.anne.is_invited() or self.jan.is_not_invited())
 
+        if self.relevant_constraint([self.magne, self.june]):
+            val = val and (self.magne.is_not_invited() or self.june.is_invited())
+
+        if self.relevant_constraint([self.emil, self.egil]):
+            val = val and (self.emil.is_undecided() or self.egil.is_not_invited())
+
+        if self.relevant_constraint([self.martin, self.anne]):
+            val = val and (self.martin.is_invited() and self.anne.is_not_invited())
+
         return val
 
-    def relevant_constraint(self,  constraint_guests):
+    def relevant_constraint(self, constraint_guests):
         '''
         Local function that checks that all guests in a constraint are not UNDECIDED
         :param constraint_guests: the guests involved in a constraint
@@ -130,6 +147,5 @@ class InvitationNode:
                 status = "Not invited"
             elif g.invited == Guest.UNDECIDED:
                 status == "Undecided"
-            str = str + '{:6} {}\n'.format(g.name,status)
+            str = str + '{:6} {}\n'.format(g.name, status)
         return str
-
