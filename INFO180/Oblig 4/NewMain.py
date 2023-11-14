@@ -21,8 +21,8 @@ def playgame():
                 game.select_starter(k)
                 while not (game.finished()):
                     game.select_move()
-                if game.print_result() == 'Complex':
-                    complex += 1
+                if game.print_result() == 'Complex':  # to get result I've decided to just modify the print_
+                    complex += 1                      # result function from PlayBoardGame to return true or false
                 else:
                     simple += 1
     return f'Complex: {complex}, Simple: {simple}'
